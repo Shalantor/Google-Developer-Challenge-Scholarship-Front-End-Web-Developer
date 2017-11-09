@@ -1,0 +1,19 @@
+You've learned a lot about web development so far. I want you to take a moment to write down your thoughts about web development here.
+ Answer the following questions:
+  
+* What new skills have you learned?
+  
+* What has been easy?
+  
+* What has been difficult?
+  
+* How have you used the problem solving strategies from the first project to overcome challenges so far?
+
+---
+
+Your response goes here!
+
+* I have learned some new tags like em,strong and strike. I also have learned where to look for documentation of html language (mozilla developer).Finally I learned how to transform tree structures in html code.
+* So far some of the exercises like writing paragraphs or headers have been easy.
+* The exercise and the project with the mockup have been a little more difficult for me.
+* I use a trial and error approach if I am not sure how the page will look when rendered by the browser. If I don't know something I look it up on mozilla developer.
