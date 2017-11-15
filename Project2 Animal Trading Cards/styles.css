@@ -6,15 +6,17 @@
   margin-right: 20px;
   border-style: solid;
   border-width: 1px;
-  border-color: #D3D3D3;
+  border-color: #424242;
 }
 
 .card{
+  background: #64B5F6;
+  color: #FFFFFF;
   /*Width of card + spacing around it, taken from above*/
   width : 330px;
   border-style: solid;
   border-width: 1px;
-  border-color: #D3D3D3;
+  border-color: #424242;
   box-shadow: 5px 5px 2px #D3D3D3;
   /*Set font size to 80% to get fewer lines of text in card*/
   font-size: 80%;
@@ -26,11 +28,12 @@
 }
 
 .animal_info{
+  background: #1565C0;
   margin-left: 10px;
   margin-top: 30px;
   border-style: solid;
   border-width: 1px;
-  border-color: #D3D3D3;
+  border-color: #424242;
   margin-right: 10px;
   margin-bottom: 10px;
   padding: 10px;
