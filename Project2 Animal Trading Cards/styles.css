@@ -1,1 +1,52 @@
 /* add your CSS here */
+
+.animal_image{
+  width: 300px;
+  margin-left: 10px;
+  margin-right: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #D3D3D3;
+}
+
+.card{
+  /*Width of card + spacing around it, taken from above*/
+  width : 330px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #D3D3D3;
+  box-shadow: 5px 5px 2px #D3D3D3;
+  /*Set font size to 80% to get fewer lines of text in card*/
+  font-size: 80%;
+}
+
+.animal_name{
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+
+.animal_info{
+  margin-left: 10px;
+  margin-top: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #D3D3D3;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.animal_fact{
+  font-style: italic;
+}
+
+.facts_list{
+  list-style-type: none;
+  /*Remove default margin and padding*/
+  margin : 0px;
+  padding: 0px;
+}
+
+.facts_list li span{
+  font-weight: bold;
+}
