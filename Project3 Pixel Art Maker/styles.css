@@ -28,11 +28,16 @@ table {
 }
 
 tr {
-    height: 20px;
+    height: 30px;
 }
 
 td {
-    width: 20px;
+    width: 30px;
+}
+
+/*Change cursor when hovering*/
+td:hover {
+  cursor: pointer;
 }
 
 input[type=number] {
