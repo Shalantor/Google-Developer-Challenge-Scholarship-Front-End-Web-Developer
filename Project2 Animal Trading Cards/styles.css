@@ -25,6 +25,13 @@
 .animal_name{
   margin-bottom: 30px;
   margin-left: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #424242;
+  display:table;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 .animal_info{
@@ -52,4 +59,11 @@
 
 .facts_list li span{
   font-weight: bold;
+}
+
+.description {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #424242;
+  padding: 5px;
 }
