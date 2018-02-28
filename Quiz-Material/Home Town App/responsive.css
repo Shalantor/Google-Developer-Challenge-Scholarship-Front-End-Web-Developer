@@ -117,12 +117,26 @@
         position: relative;
         padding-left: 50%;
         padding-right: 50%;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
+
     .scores__table td:before {
-        position: absolute;
-        left: 6px;
-        content: attr(data-th);
-        font-weight: bold;
+         position: absolute;
+         float:left;
+         left: 6px;
+         content: attr(data-th);
+         background-color:#78909C;
+         width:30%;
+         color: #FFFFFF;
+         text-align: center;
+         height:100%;
+         margin-top: 1px;
+         margin-bottom: 1px;
+         padding-top: 5px;
+         font-weight: bold;
     }
 
 }
