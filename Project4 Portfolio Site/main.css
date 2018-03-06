@@ -1,7 +1,11 @@
 .header {
     width:100%;
-    border-bottom: 5px solid #7d97ad;
     min-height: 56px;
+}
+
+.header_inner{
+    width: 100%;
+    border-bottom: 5px solid #7d97ad;
 }
 
 .header_info {
@@ -18,4 +22,13 @@
 
 .header_logo {
     height: 100%;
+}
+
+/*Responsive css*/
+@media screen and (min-width: 850px) {
+    .header_inner{
+        width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
