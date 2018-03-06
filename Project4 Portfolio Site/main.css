@@ -1,0 +1,21 @@
+.header {
+    width:100%;
+    border-bottom: 5px solid #7d97ad;
+    min-height: 56px;
+}
+
+.header_info {
+    display: inline-block;
+    text-align: right;
+    height: 100%;
+    vertical-align: top;
+    float: right;
+}
+
+.header_title, .header_description{
+    margin: auto;
+}
+
+.header_logo {
+    height: 100%;
+}
