@@ -105,4 +105,17 @@ main{
     .project_picture{
         width: 20%;
     }
+
+    .project_description{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .profile_picture{
+        width: 60%;
+    }
+    .profile_description{
+        width: 90%;
+    }
 }
