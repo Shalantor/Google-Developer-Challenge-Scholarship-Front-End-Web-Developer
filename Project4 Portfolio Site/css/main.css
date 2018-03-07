@@ -96,3 +96,13 @@ main{
         margin-right: auto;
     }
 }
+
+@media screen and (max-width: 650px) {
+    .project{
+        width: 100%;
+    }
+
+    .project_picture{
+        width: 20%;
+    }
+}
