@@ -114,8 +114,33 @@ main{
 @media screen and (max-width: 550px) {
     .profile_picture{
         width: 60%;
+        height: auto;
     }
     .profile_description{
         width: 90%;
     }
+}
+
+@media screen and (max-width: 500px) {
+
+    .header_logo{
+        height: 48px;
+    }
+
+    .header_title {
+        font-size: 1.2em;
+    }
+
+    .header_description {
+        font-size: 0.9em;
+    }
+
+}
+
+@media screen and (max-width: 300px) {
+
+    .header_info {
+        float: none;
+    }
+
 }
