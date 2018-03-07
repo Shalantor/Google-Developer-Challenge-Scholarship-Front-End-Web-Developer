@@ -1,8 +1,8 @@
-main{
+main {
     display: block;
 }
 
-.content{
+.content {
     display: flex;
     flex-wrap: wrap;
 }
@@ -10,12 +10,12 @@ main{
 /*CSS for header section*/
 
 .header {
-    width:100%;
+    width: 100%;
     min-height: 56px;
     padding-bottom: 5px;
 }
 
-.header_inner{
+.header_inner {
     width: 100%;
     border-bottom: 5px solid #7d97ad;
 }
@@ -28,7 +28,7 @@ main{
     float: right;
 }
 
-.header_title, .header_description{
+.header_title, .header_description {
     margin: auto;
     color: #2d3c49;
 }
@@ -38,20 +38,20 @@ main{
 }
 
 /*Css for personal information section*/
-/*TODO:Change placeholder image*/
-.profile_picture{
+.profile_picture {
     width: 40%;
-    float:left;
+    float: left;
     margin: auto;
+    height: auto;
 }
 
-.profile_description{
-    width:50%;
+.profile_description {
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.personal_info{
+.personal_info {
     text-align: left;
     display: flex;
     flex-wrap: wrap;
@@ -61,37 +61,42 @@ main{
 
 /*Css for project section*/
 
-.personal_projects{
+.personal_projects {
     width: 100%;
 }
 
-.project_container{
+.projects_header {
+    color: #7d97ad;
+    margin-left: 5px;
+}
+
+.project_container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.project{
+.project {
     width: 50%;
     height: 100%;
     margin-bottom: 2em;
 }
 
-.project_picture{
+.project_picture {
     width: 30%;
     float: left;
     margin: auto;
-    height: 100%;
+    height: auto;
     margin-left: 5px;
 }
 
-.project_description{
-    width:65%;
+.project_description {
+    width: 65%;
     float: right;
 }
 
 /*Responsive css*/
 @media screen and (min-width: 850px) {
-    main,.header_inner{
+    main,.header_inner {
         width: 850px;
         margin-left: auto;
         margin-right: auto;
@@ -99,32 +104,33 @@ main{
 }
 
 @media screen and (max-width: 650px) {
-    .project{
+    .project {
         width: 100%;
     }
 
-    .project_picture{
+    .project_picture {
         width: 20%;
     }
 
-    .project_description{
+    .project_description {
         width: 70%;
     }
 }
 
 @media screen and (max-width: 550px) {
-    .profile_picture{
+    .profile_picture {
         width: 60%;
         height: auto;
     }
-    .profile_description{
+
+    .profile_description {
         width: 90%;
     }
 }
 
 @media screen and (max-width: 500px) {
 
-    .header_logo{
+    .header_logo {
         height: 48px;
     }
 
