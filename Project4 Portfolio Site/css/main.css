@@ -7,6 +7,8 @@ main{
     flex-wrap: wrap;
 }
 
+/*CSS for header section*/
+
 .header {
     width:100%;
     min-height: 56px;
@@ -27,20 +29,20 @@ main{
 
 .header_title, .header_description{
     margin: auto;
+    color: #2d3c49;
 }
 
 .header_logo {
     height: 100%;
 }
 
-
+/*Css for personal information section*/
 /*TODO:Change placeholder image*/
 .profile_picture{
     width: 40%;
     min-height: 200px;
     float:left;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 
 .profile_description{
@@ -56,6 +58,8 @@ main{
     align-items: center;
 }
 
+/*Css for project section*/
+
 .personal_projects{
     width: 100%;
 }
@@ -67,11 +71,21 @@ main{
 
 .project{
     width: 50%;
+    height: 100%;
+    margin-bottom: 2em;
 }
 
 .project_picture{
-    width: 50%;
+    width: 30%;
     float: left;
+    margin: auto;
+    height: 100%;
+    margin-left: 5px;
+}
+
+.project_description{
+    width:65%;
+    float: right;
 }
 
 /*Responsive css*/
