@@ -7,12 +7,13 @@ main {
     flex-wrap: wrap;
 }
 
-/*CSS for header section*/
-
+/*Css for header section*/
 .header {
     width: 100%;
     min-height: 56px;
     padding-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .header_inner {
@@ -23,12 +24,14 @@ main {
 .header_info {
     display: inline-block;
     text-align: right;
-    height: 100%;
+    height: auto;
+    width: 80%;
     vertical-align: top;
     float: right;
 }
 
-.header_title, .header_description {
+.header_title,
+.header_description {
     margin: auto;
     color: #2d3c49;
 }
@@ -60,7 +63,6 @@ main {
 }
 
 /*Css for project section*/
-
 .personal_projects {
     width: 100%;
 }
@@ -96,7 +98,8 @@ main {
 
 /*Responsive css*/
 @media screen and (min-width: 850px) {
-    main,.header_inner {
+    main,
+    .header_inner {
         width: 850px;
         margin-left: auto;
         margin-right: auto;
