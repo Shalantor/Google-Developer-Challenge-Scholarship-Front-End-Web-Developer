@@ -9,7 +9,7 @@ $("#sizePicker").submit(function(event){
 
 // When a table cell is clicked, change its background color
 // Have to use on function because child is dynamically created content
-$("#pixel_canvas").on("click", function(event) {
+$("#pixel_canvas").addEventListener("click", function(event) {
   let color = $("#colorPicker").val();
   $(event.target).attr("bgcolor", color);
 });
