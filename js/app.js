@@ -72,6 +72,9 @@ function createDeck(names){
                     openCard.className = 'card match';
                     pairs -= 1;
                     openCard = null;
+                    if(pairs === 0){
+                        showWinMessage();
+                    }
                 }
                 else{
                     setTimeout(function(){
@@ -109,4 +112,31 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+// Show end screen message
+function showWinMessage(){
+
+    //Remove deck
+    deck.remove();
+
+    //hide scorepanel
+    let scorePanel = document.querySelector('.score-panel');
+    scorePanel.style.display = 'none';
+
+    //hide game name
+    let gameName = document.querySelector('.game-name');
+    gameName.style.display = 'none';
+
+    //show message
+    let message = document.querySelector('.win-message');
+    message.style.display = 'initial';
+
+    //Show info
+    let infoMessage = document.querySelector('.info-message');
+    let moveInfo = document.querySelector('.moves').textContent;
+    let stars = document.getElementsByClassName('fa-star');
+    infoMessage.textContent = 'With ' + moveInfo + ' moves and ' + stars.length + ' stars.'
+
+    //Add listener to button
 }
