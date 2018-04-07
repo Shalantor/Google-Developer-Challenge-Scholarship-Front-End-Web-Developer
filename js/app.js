@@ -17,6 +17,13 @@ var deck = createDeck(iconClassNames);
 var container = document.querySelector('.container');
 container.appendChild(deck);
 
+//Listener to reset game
+var restart = document.querySelector('.restart');
+restart.addEventListener('click',function(){
+    container.removeChild(deck);
+    deck = createDeck(iconClassNames);
+    container.appendChild(deck);
+});
 
 //Function to create the deck. Returns the ul element for the deck.
 function createDeck(names){
