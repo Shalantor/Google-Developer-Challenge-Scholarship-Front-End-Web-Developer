@@ -9,6 +9,12 @@ var iconClassNames = ['balance-scale','fire','birthday-cake','bug',
 //How many pairs we need
 var pairs = 8;
 
+//How many moves to remove star
+var howManyMoves = 5;
+
+//Current move number
+var moves = 0;
+
 //Variable for open card
 var openCard=null;
 
@@ -24,6 +30,14 @@ restart.addEventListener('click',function(){
     deck = createDeck(iconClassNames);
     container.appendChild(deck);
 });
+
+//Remove a star from the rating
+function removeStar(){
+    let star = document.querySelector('.star-rating li');
+    if(star !== null){
+        star.remove();
+    }
+}
 
 //Function to create the deck. Returns the ul element for the deck.
 function createDeck(names){
@@ -66,6 +80,11 @@ function createDeck(names){
             }
             else{
                 openCard = event.target;
+            }
+            //Count Moves
+            if(++moves == howManyMoves){
+                moves = 0;
+                removeStar();
             }
         }
     });
