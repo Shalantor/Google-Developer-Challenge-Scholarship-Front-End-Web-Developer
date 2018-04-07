@@ -71,12 +71,15 @@ function createDeck(names){
                     event.target.className = 'card match';
                     openCard.className = 'card match';
                     pairs -= 1;
+                    openCard = null;
                 }
                 else{
-                    event.target.className = 'card';
-                    openCard.className = 'card';
+                    setTimeout(function(){
+                        event.target.className = 'card';
+                        openCard.className = 'card';
+                        openCard = null;
+                    },1000);
                 }
-                openCard = null;
             }
             else{
                 openCard = event.target;
