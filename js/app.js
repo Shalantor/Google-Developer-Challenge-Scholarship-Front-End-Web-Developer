@@ -182,5 +182,17 @@ function showWinMessage(){
     let stars = document.getElementsByClassName('fa-star');
     infoMessage.textContent = 'With ' + moveInfo + ' moves and ' + stars.length + ' stars.'
 
+    //Show how much time it took
+    let timerDisplay = document.querySelector('.time');
+    let time = timerDisplay.textContent;
+    let minutes = time.substring(0,time.indexOf(":"));
+    let seconds = time.substring(time.indexOf(":") + 1,time.length);
+
+    let infoTime = document.querySelector('.info-time');
+    if(seconds.charAt(0) === '0'){
+        console.log(seconds)
+        seconds = seconds.charAt(1);
+    }
+    infoTime.textContent = 'It took you only ' + minutes + ' minutes and ' + seconds + ' seconds.';
     //Add listener to button
 }
