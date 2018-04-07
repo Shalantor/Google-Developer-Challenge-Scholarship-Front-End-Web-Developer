@@ -194,5 +194,18 @@ function showWinMessage(){
         seconds = seconds.charAt(1);
     }
     infoTime.textContent = 'It took you only ' + minutes + ' minutes and ' + seconds + ' seconds.';
+
     //Add listener to button
+    let playAgain = document.querySelector('.play-again');
+    playAgain.addEventListener('click',function(){
+        let deck = createDeck(iconClassNames);
+        let container = document.querySelector('.container');
+        container.appendChild(deck);
+        scorePanel.style.display = 'initial';
+        gameName.style.display = 'initial';
+        message.style.display = 'none';
+        timer = setInterval(function(){
+            updateTimer();
+        },1000);
+    });
 }
