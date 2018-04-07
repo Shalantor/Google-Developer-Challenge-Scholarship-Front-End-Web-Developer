@@ -26,9 +26,27 @@ container.appendChild(deck);
 //Listener to reset game
 var restart = document.querySelector('.restart');
 restart.addEventListener('click',function(){
+    //Deck cleanup
     container.removeChild(deck);
     deck = createDeck(iconClassNames);
     container.appendChild(deck);
+
+    //timer reset
+    clearInterval(timer);
+    let timerDisplay = document.querySelector('.time');
+    timerDisplay.textContent = '0:00';
+    timer = setInterval(function(){
+        updateTimer();
+    },1000);
+
+    //Star reset
+    let rating = document.querySelector('.star-rating');
+
+    while(rating.getElementsByTagName('li').length < 3){
+        let star = document.createElement('li');
+        star.innerHTML = '<i class="fa fa-star"></i>';
+        rating.appendChild(star);
+    }
 });
 
 //Set interval to update timer every 1 second
