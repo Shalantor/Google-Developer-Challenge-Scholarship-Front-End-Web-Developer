@@ -31,6 +31,31 @@ restart.addEventListener('click',function(){
     container.appendChild(deck);
 });
 
+//Set interval to update timer every 1 second
+var timer = setInterval(function(){
+    updateTimer();
+},1000);
+
+//Increment the displayed timer by one
+function updateTimer(){
+
+    // Get minutes and seconds
+    let timerDisplay = document.querySelector('.time');
+    let time = timerDisplay.textContent;
+    let minutes = parseInt(time.substring(0,time.indexOf(":")));
+    let seconds = parseInt(time.substring(time.indexOf(":") + 1,time.length));
+
+    //Increment both
+    minutes = (seconds === 59) ? ++minutes : minutes;
+    seconds = (++seconds) % 60;
+    if(seconds <= 9){
+        seconds = '0' + seconds;
+    }
+
+    //Display new time
+    timerDisplay.textContent = minutes + ':' + seconds;
+}
+
 //Remove a star from the rating
 function removeStar(){
     let star = document.querySelector('.star-rating li');
@@ -74,6 +99,7 @@ function createDeck(names){
                     openCard = null;
                     if(pairs === 0){
                         showWinMessage();
+                        clearInterval(timer);
                     }
                 }
                 else{
