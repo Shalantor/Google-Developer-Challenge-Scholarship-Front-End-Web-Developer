@@ -103,3 +103,23 @@ body {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * End game message
+ */
+
+.win-message {
+    width: 345px;
+    text-align: center;
+    display: none;
+}
+
+.win-message .play-again{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
