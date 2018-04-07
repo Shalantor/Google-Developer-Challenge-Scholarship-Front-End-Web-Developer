@@ -6,10 +6,39 @@
 var iconClassNames = ['balance-scale','fire','birthday-cake','bug',
                     'fighter-jet','gamepad','university','fire-extinguisher'];
 
+//How many pairs we need
+var pairs = 8;
+
+//Variable for open card
+var openCard=null;
+
 // Create the deck and append it as a child to the container class
 var deck = createDeck(iconClassNames);
 var container = document.querySelector('.container');
 container.appendChild(deck);
+
+//Listener for a card
+deck.addEventListener('click',function(event){
+    if(event.target.className === 'card'){
+        event.target.className = 'card open show';
+        //Check if there is open card
+        if(openCard !== null){
+            if(openCard.innerHTML === event.target.innerHTML){
+                event.target.className = 'card match';
+                openCard.className = 'card match';
+                pairs -= 1;
+            }
+            else{
+                event.target.className = 'card';
+                openCard.className = 'card';
+            }
+            openCard = null;
+        }
+        else{
+            openCard = event.target;
+        }
+    }
+});
 
 //Function to create the deck. Returns the ul element for the deck.
 function createDeck(names){
