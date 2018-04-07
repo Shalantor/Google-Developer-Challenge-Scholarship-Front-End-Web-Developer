@@ -82,10 +82,12 @@ function createDeck(names){
                 openCard = event.target;
             }
             //Count Moves
-            if(++moves == howManyMoves){
-                moves = 0;
+            if((++moves % howManyMoves) === 0){
                 removeStar();
             }
+            //Increment displayed moves
+            let moveDisplay = document.querySelector('.moves');
+            moveDisplay.textContent = moves + ' ';
         }
     });
     return deck;
