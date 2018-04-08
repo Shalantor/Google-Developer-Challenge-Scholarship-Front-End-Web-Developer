@@ -3,7 +3,7 @@
  */
 
 // The list below holds all the class names for the card icons
-var iconClassNames = ['balance-scale','fire','birthday-cake','bug',
+const iconClassNames = ['balance-scale','fire','birthday-cake','bug',
                     'fighter-jet','gamepad','university','fire-extinguisher'];
 
 //How many moves to remove star
@@ -13,17 +13,18 @@ const howManyMoves = 10;
 const showPair = 1000;
 
 // Create the deck and append it as a child to the container class
-var deck = createDeck(iconClassNames);
-var container = document.querySelector('.container');
+const deck = createDeck(iconClassNames);
+const container = document.querySelector('.container');
 container.appendChild(deck);
 
 //Listener to reset game
-var restart = document.querySelector('.restart');
+const restart = document.querySelector('.restart');
 restart.addEventListener('click',function(){
     //Deck cleanup
     let container = document.querySelector('.container');
+    let deck = document.querySelector('.deck');
     container.removeChild(deck);
-    let deck = createDeck(iconClassNames);
+    deck = createDeck(iconClassNames);
     container.appendChild(deck);
 
     //timer reset
@@ -41,10 +42,14 @@ restart.addEventListener('click',function(){
         star.innerHTML = '<i class="fa fa-star"></i>';
         rating.appendChild(star);
     }
+
+    //Move reset
+    let moveDisplay = document.querySelector('.moves');
+    moveDisplay.textContent = '0 ';
 });
 
 //Set interval to update timer every 1 second
-var timer = setInterval(function(){
+let timer = setInterval(function(){
     updateTimer();
 },1000);
 
