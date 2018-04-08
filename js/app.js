@@ -211,14 +211,40 @@ function showWinMessage(){
     //Add listener to button
     let playAgain = document.querySelector('.play-again');
     playAgain.addEventListener('click',function(){
+
+        //Create deck
         let deck = createDeck(ICON_CLASS_NAMES);
         let container = document.querySelector('.container');
         container.appendChild(deck);
+
+        //Show score panel and name of game
         scorePanel.style.display = 'initial';
         gameName.style.display = 'initial';
+
+        //Hide winning message
         message.style.display = 'none';
+
+        //Restart timer
         timer = setInterval(function(){
             updateTimer();
         },1000);
+
+        //Set stars to 3, time to 0:00 and moves to 0
+        //Star reset
+        let rating = document.querySelector('.star-rating');
+        while(rating.getElementsByTagName('li').length < 3){
+            let star = document.createElement('li');
+            star.innerHTML = '<i class="fa fa-star"></i>';
+            rating.appendChild(star);
+        }
+
+        //Move reset
+        let moveDisplay = document.querySelector('.moves');
+        moveDisplay.textContent = '0 ';
+
+        //Time reset
+        let timerDisplay = document.querySelector('.time');
+        timerDisplay.textContent = '0:00';
+
     });
 }
