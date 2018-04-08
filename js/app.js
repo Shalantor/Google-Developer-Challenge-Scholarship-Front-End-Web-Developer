@@ -12,9 +12,6 @@ var pairs = 8;
 //How many moves to remove star
 var howManyMoves = 5;
 
-//Current move number
-var moves = 0;
-
 //Variable for open card
 var openCard=null;
 
@@ -27,8 +24,9 @@ container.appendChild(deck);
 var restart = document.querySelector('.restart');
 restart.addEventListener('click',function(){
     //Deck cleanup
+    let container = document.querySelector('.container');
     container.removeChild(deck);
-    deck = createDeck(iconClassNames);
+    let deck = createDeck(iconClassNames);
     container.appendChild(deck);
 
     //timer reset
@@ -41,7 +39,6 @@ restart.addEventListener('click',function(){
 
     //Star reset
     let rating = document.querySelector('.star-rating');
-
     while(rating.getElementsByTagName('li').length < 3){
         let star = document.createElement('li');
         star.innerHTML = '<i class="fa fa-star"></i>';
@@ -84,9 +81,8 @@ function removeStar(){
 
 //Function to create the deck. Returns the ul element for the deck.
 function createDeck(names){
-    var array = [];
-    var deck;
-    deck = document.createElement('ul');
+    let array = [];
+    let deck = document.createElement('ul');
     deck.className = 'deck';
     for(const name of names){
         // Two cards per icon/name
@@ -99,11 +95,13 @@ function createDeck(names){
             array.push(card);
         }
     }
+
     //Shuffle cards before adding to deck
     array = shuffle(array);
     for (let i = 0; i < array.length; i++) {
         deck.appendChild(array[i]);
     }
+
     //Listener for a card
     deck.addEventListener('click',function(event){
         if(event.target.className === 'card'){
@@ -131,13 +129,19 @@ function createDeck(names){
             else{
                 openCard = event.target;
             }
+
+            //Get displayed moves
+            let moveDisplay = document.querySelector('.moves');
+            let moves = parseInt(moveDisplay.textContent);
+
             //Count Moves
             if((++moves % howManyMoves) === 0){
                 removeStar();
             }
-            //Increment displayed moves
-            let moveDisplay = document.querySelector('.moves');
+
+            //Update displayed moves
             moveDisplay.textContent = moves + ' ';
+
         }
     });
     return deck;
@@ -145,7 +149,7 @@ function createDeck(names){
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
