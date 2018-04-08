@@ -7,7 +7,10 @@ var iconClassNames = ['balance-scale','fire','birthday-cake','bug',
                     'fighter-jet','gamepad','university','fire-extinguisher'];
 
 //How many moves to remove star
-var howManyMoves = 10;
+const howManyMoves = 10;
+
+//How long to show two pairs that do not match (in milliseconds)
+const showPair = 1000;
 
 // Create the deck and append it as a child to the container class
 var deck = createDeck(iconClassNames);
@@ -116,14 +119,14 @@ function createDeck(names){
                     //Check if player has won
                     if(document.getElementsByClassName('match').length === 16){
                         showWinMessage();
-                        clearInterval(timer);    
+                        clearInterval(timer);
                     }
                 }
                 else{
                     setTimeout(function(){
                         event.target.className = 'card';
                         openCard.className = 'card';
-                    },1000);
+                    },showPair);
                 }
             }
 
