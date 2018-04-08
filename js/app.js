@@ -35,25 +35,7 @@ restart.addEventListener('click',function(){
     deck = createDeck(ICON_CLASS_NAMES);
     container.appendChild(deck);
 
-    //timer reset
-    clearInterval(timer);
-    let timerDisplay = document.querySelector('.time');
-    timerDisplay.textContent = '0:00';
-    timer = setInterval(function(){
-        updateTimer();
-    },1000);
-
-    //Star reset
-    let rating = document.querySelector('.star-rating');
-    while(rating.getElementsByTagName('li').length < 3){
-        let star = document.createElement('li');
-        star.innerHTML = '<i class="fa fa-star"></i>';
-        rating.appendChild(star);
-    }
-
-    //Move reset
-    let moveDisplay = document.querySelector('.moves');
-    moveDisplay.textContent = '0 ';
+    resetScorePanel();
 });
 
 //Set interval to update timer every 1 second
@@ -175,6 +157,7 @@ function shuffle(array) {
 function showWinMessage(){
 
     //Remove deck
+    let deck = document.querySelector('.deck');
     deck.remove();
 
     //hide scorepanel
@@ -230,21 +213,25 @@ function showWinMessage(){
         },1000);
 
         //Set stars to 3, time to 0:00 and moves to 0
-        //Star reset
-        let rating = document.querySelector('.star-rating');
-        while(rating.getElementsByTagName('li').length < 3){
-            let star = document.createElement('li');
-            star.innerHTML = '<i class="fa fa-star"></i>';
-            rating.appendChild(star);
-        }
-
-        //Move reset
-        let moveDisplay = document.querySelector('.moves');
-        moveDisplay.textContent = '0 ';
-
-        //Time reset
-        let timerDisplay = document.querySelector('.time');
-        timerDisplay.textContent = '0:00';
-
+        resetScorePanel();
     });
+}
+
+//Reset the score panel. Time to 0:00, moves to 0, stars to 3
+function resetScorePanel(){
+    //Star reset
+    let rating = document.querySelector('.star-rating');
+    while(rating.getElementsByTagName('li').length < 3){
+        let star = document.createElement('li');
+        star.innerHTML = '<i class="fa fa-star"></i>';
+        rating.appendChild(star);
+    }
+
+    //Move reset
+    let moveDisplay = document.querySelector('.moves');
+    moveDisplay.textContent = '0 ';
+
+    //Time reset
+    let timerDisplay = document.querySelector('.time');
+    timerDisplay.textContent = '0:00';
 }
