@@ -6,14 +6,8 @@
 var iconClassNames = ['balance-scale','fire','birthday-cake','bug',
                     'fighter-jet','gamepad','university','fire-extinguisher'];
 
-//How many pairs we need
-var pairs = 8;
-
 //How many moves to remove star
-var howManyMoves = 5;
-
-//Variable for open card
-var openCard=null;
+var howManyMoves = 10;
 
 // Create the deck and append it as a child to the container class
 var deck = createDeck(iconClassNames);
@@ -105,29 +99,32 @@ function createDeck(names){
     //Listener for a card
     deck.addEventListener('click',function(event){
         if(event.target.className === 'card'){
+
+            //If there are already two open cards dont let user click on third card
+            if(document.getElementsByClassName('open').length === 2){
+                return;
+            }
+
+            let openCard = document.querySelector('.open');
             event.target.className = 'card open show';
-            //Check if there is open card
-            if(openCard !== null){
+            //Check if there is previous open card
+            if(openCard !== null ){
                 if(openCard.innerHTML === event.target.innerHTML){
                     event.target.className = 'card match';
                     openCard.className = 'card match';
-                    pairs -= 1;
-                    openCard = null;
-                    if(pairs === 0){
+
+                    //Check if player has won
+                    if(document.getElementsByClassName('match').length === 16){
                         showWinMessage();
-                        clearInterval(timer);
+                        clearInterval(timer);    
                     }
                 }
                 else{
                     setTimeout(function(){
                         event.target.className = 'card';
                         openCard.className = 'card';
-                        openCard = null;
                     },1000);
                 }
-            }
-            else{
-                openCard = event.target;
             }
 
             //Get displayed moves
