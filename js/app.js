@@ -3,17 +3,25 @@
  */
 
 // The list below holds all the class names for the card icons
-const iconClassNames = ['balance-scale','fire','birthday-cake','bug',
-                    'fighter-jet','gamepad','university','fire-extinguisher'];
+const ICON_CLASS_NAMES = [
+    'balance-scale',
+    'fire',
+    'birthday-cake',
+    'bug',
+    'fighter-jet',
+    'gamepad',
+    'university',
+    'fire-extinguisher'
+];
 
 //How many moves to remove star
-const howManyMoves = 10;
+const HOW_MANY_MOVES = 10;
 
 //How long to show two pairs that do not match (in milliseconds)
-const showPair = 1000;
+const SHOW_PAIR = 1000;
 
 // Create the deck and append it as a child to the container class
-const deck = createDeck(iconClassNames);
+const deck = createDeck(ICON_CLASS_NAMES);
 const container = document.querySelector('.container');
 container.appendChild(deck);
 
@@ -24,7 +32,7 @@ restart.addEventListener('click',function(){
     let container = document.querySelector('.container');
     let deck = document.querySelector('.deck');
     container.removeChild(deck);
-    deck = createDeck(iconClassNames);
+    deck = createDeck(ICON_CLASS_NAMES);
     container.appendChild(deck);
 
     //timer reset
@@ -64,7 +72,7 @@ function updateTimer(){
 
     //Increment both
     minutes = (seconds === 59) ? ++minutes : minutes;
-    seconds = (++seconds) % 60;
+    seconds = ++seconds % 60;
     if(seconds <= 9){
         seconds = '0' + seconds;
     }
@@ -107,12 +115,7 @@ function createDeck(names){
 
     //Listener for a card
     deck.addEventListener('click',function(event){
-        if(event.target.className === 'card'){
-
-            //If there are already two open cards dont let user click on third card
-            if(document.getElementsByClassName('open').length === 2){
-                return;
-            }
+        if(event.target.className === 'card' && document.getElementsByClassName('open').length !== 2){
 
             let openCard = document.querySelector('.open');
             event.target.className = 'card open show';
@@ -132,7 +135,7 @@ function createDeck(names){
                     setTimeout(function(){
                         event.target.className = 'card';
                         openCard.className = 'card';
-                    },showPair);
+                    },SHOW_PAIR);
                 }
             }
 
@@ -141,7 +144,7 @@ function createDeck(names){
             let moves = parseInt(moveDisplay.textContent);
 
             //Count Moves
-            if((++moves % howManyMoves) === 0){
+            if(++moves % HOW_MANY_MOVES === 0){
                 removeStar();
             }
 
@@ -208,7 +211,7 @@ function showWinMessage(){
     //Add listener to button
     let playAgain = document.querySelector('.play-again');
     playAgain.addEventListener('click',function(){
-        let deck = createDeck(iconClassNames);
+        let deck = createDeck(ICON_CLASS_NAMES);
         let container = document.querySelector('.container');
         container.appendChild(deck);
         scorePanel.style.display = 'initial';
