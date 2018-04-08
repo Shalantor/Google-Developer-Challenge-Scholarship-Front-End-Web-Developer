@@ -70,9 +70,10 @@ function updateTimer(){
 
 //Remove a star from the rating
 function removeStar(){
-    let star = document.querySelector('.star-rating li');
-    if(star !== null){
-        star.remove();
+    let rating = document.querySelector('.star-rating');
+    let stars = rating.getElementsByTagName('li');
+    if(stars.length > 1){
+        stars[0].remove();
     }
 }
 
