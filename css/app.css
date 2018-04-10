@@ -148,3 +148,27 @@ body {
         height: auto;
     }
 }
+
+@media screen and (min-width: 700px) and (max-width: 849px){
+
+    .deck .card {
+        min-height: 120px;
+    }
+
+    .deck {
+        min-height: 580px;
+    }
+
+}
+
+@media screen and (min-width: 600px) and (max-width: 699px){
+
+    .deck .card {
+        height: 23%;
+    }
+
+    .deck {
+        min-height: 500px;
+    }
+
+}
