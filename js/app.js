@@ -20,6 +20,9 @@ const HOW_MANY_MOVES = 10;
 //How long to show two pairs that do not match (in milliseconds)
 const SHOW_PAIR = 1000;
 
+//Id for the timer
+let timer = null;
+
 // Create the deck and append it as a child to the container class
 const deck = createDeck(ICON_CLASS_NAMES);
 const container = document.querySelector('.container');
@@ -36,12 +39,9 @@ restart.addEventListener('click',function(){
     container.appendChild(deck);
 
     resetScorePanel();
+    clearInterval(timer);
+    timer = null;
 });
-
-//Set interval to update timer every 1 second
-let timer = setInterval(function(){
-    updateTimer();
-},1000);
 
 //Increment the displayed timer by one
 function updateTimer(){
@@ -99,6 +99,13 @@ function createDeck(names){
     deck.addEventListener('click',function(event){
         if(event.target.className === 'card' && document.getElementsByClassName('open').length !== 2){
 
+            //Is this the first card?
+            if(timer === null){
+                timer = setInterval(function(){
+                    updateTimer();
+                },1000);
+            }
+
             let openCard = document.querySelector('.open');
             event.target.className = 'card open show';
             //Check if there is previous open card
@@ -111,6 +118,7 @@ function createDeck(names){
                     if(document.getElementsByClassName('match').length === 16){
                         showWinMessage();
                         clearInterval(timer);
+                        timer = null;
                     }
                 }
                 else{
@@ -185,7 +193,6 @@ function showWinMessage(){
 
     let infoTime = document.querySelector('.info-time');
     if(seconds.charAt(0) === '0'){
-        console.log(seconds)
         seconds = seconds.charAt(1);
     }
     infoTime.textContent = 'It took you only ' + minutes + ' minutes and ' + seconds + ' seconds.';
@@ -205,11 +212,6 @@ function showWinMessage(){
 
         //Hide winning message
         message.style.display = 'none';
-
-        //Restart timer
-        timer = setInterval(function(){
-            updateTimer();
-        },1000);
 
         //Set stars to 3, time to 0:00 and moves to 0
         resetScorePanel();
