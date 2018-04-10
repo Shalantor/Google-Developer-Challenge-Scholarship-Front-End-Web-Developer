@@ -119,19 +119,18 @@ function createDeck(names){
                         openCard.className = 'card';
                     },SHOW_PAIR);
                 }
+                //Get displayed moves
+                let moveDisplay = document.querySelector('.moves');
+                let moves = parseInt(moveDisplay.textContent);
+
+                //Count Moves
+                if(++moves % HOW_MANY_MOVES === 0){
+                    removeStar();
+                }
+
+                //Update displayed moves
+                moveDisplay.textContent = moves + ' ';
             }
-
-            //Get displayed moves
-            let moveDisplay = document.querySelector('.moves');
-            let moves = parseInt(moveDisplay.textContent);
-
-            //Count Moves
-            if(++moves % HOW_MANY_MOVES === 0){
-                removeStar();
-            }
-
-            //Update displayed moves
-            moveDisplay.textContent = moves + ' ';
 
         }
     });
