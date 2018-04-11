@@ -116,7 +116,7 @@ body {
     display: none;
 }
 
-.win-message .play-again{
+.win-message .play-again {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -186,5 +186,9 @@ body {
 
     .deck {
         padding: 5px;
+    }
+
+    .win-message {
+        font-size: 11px;
     }
 }
