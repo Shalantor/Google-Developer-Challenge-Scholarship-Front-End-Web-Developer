@@ -1,3 +1,6 @@
+//Array with acceptable start values for x coordinate
+var startValuesForX = [60,140,220];
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -6,6 +9,15 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+    // The x coordinate 505 is outs of bounds at the right
+    this.x = -100;
+
+    // The y coordinate. 60,140,220 are acceptable values
+    this.y = startValuesForX[Math.floor(Math.random() * startValuesForX.length)];
+
+    //Speed of the enemy
+    this.speed = Math.floor(Math.random() * 500) + 200;
 };
 
 // Update the enemy's position, required method for game
