@@ -26,6 +26,15 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    this.x += this.speed * dt ;
+
+    //Moved out of screen
+    if(this.x >= 505){
+        this.x = -100;
+        this.y = startValuesForX[Math.floor(Math.random() * startValuesForX.length)];
+        this.speed = Math.floor(Math.random() * 500) + 200;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
