@@ -65,6 +65,23 @@ var Player = function() {
 //Make player prototype same as enemy prototype
 Player.prototype = Enemy.prototype;
 
+//Implement player handleInput
+Player.prototype.handleInput = function(key){
+    if(key === 'left' && (this.x - this.speedX) >= 0 ){
+        this.x -= this.speedX;
+    }
+    else if(key === 'right' && (this.x + this.speedX) <= 400 ){
+        this.x += this.speedX;
+    }
+    else if(key === 'up' && (this.y - this.speedY) >= -50){
+        this.y -= this.speedY;
+        console.log(this.y);
+    }
+    else if(key === 'down' && (this.y + this.speedY) <= 400){
+        this.y += this.speedY;
+    }
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
