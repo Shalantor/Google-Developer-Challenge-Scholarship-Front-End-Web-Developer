@@ -55,8 +55,11 @@ var Player = function() {
     // The starting y coordinate
     this.y = 400;
 
-    //Speed of the player
+    //Speed of the player when moving horizontally
     this.speedX = 100;
+
+    //Speed of player when moving vertically
+    this.speedY = 90;
 };
 
 //Make player prototype same as enemy prototype
