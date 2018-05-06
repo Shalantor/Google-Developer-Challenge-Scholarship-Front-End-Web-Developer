@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -93,7 +93,32 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        //global.player.update();
+    }
+
+    /* This function checks for collision between the player and the enemies.
+     * The player can only collide with the enemis when he has y coordinate that
+     * is one of the three values 40,130,220. Enemies have one of the following
+     * y values: 60,140 or 220. For the x coordinate check if the enemy
+     *  overlaps the player
+     */
+    function checkCollisions(){
+        for(enemy of allEnemies){
+
+            //Check on x axis
+            let enemyRight = enemy.x + enemy.width;
+            let overlapX = (enemyRight >= player.x) && (enemy.x <= player.x);
+
+            //Check of y axis
+            let overlapY = (enemy.y === 60 && player.y === 40) ||
+                            (enemy.y === 140 && player.y === 130) ||
+                            (enemy.y === 220 && player.y === 220);
+
+            //If player is hit, reset and return
+            if(overlapX && overlapY){
+                reset();
+                return;
+            }
+        }
     }
 
     /* This function initially draws the "game level", it will then call
@@ -161,7 +186,9 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        //Put player at start position
+        player.x = 200;
+        player.y = 400;
     }
 
     /* Go ahead and load all of the images we know we're going to need to

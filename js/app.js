@@ -18,6 +18,13 @@ var Enemy = function() {
 
     //Speed of the enemy
     this.speed = Math.floor(Math.random() * 500) + 200;
+
+    /* Width of enemy, used for collision detection. Is 100 but we put lower
+     * to make it more fair for the player, because setting it exactly 100 makes
+     * the game too difficult
+     */
+
+    this.width = 80;
 };
 
 // Update the enemy's position, required method for game
@@ -75,7 +82,6 @@ Player.prototype.handleInput = function(key){
     }
     else if(key === 'up' && (this.y - this.speedY) >= -50){
         this.y -= this.speedY;
-        console.log(this.y);
     }
     else if(key === 'down' && (this.y + this.speedY) <= 400){
         this.y += this.speedY;
