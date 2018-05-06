@@ -22,6 +22,7 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
+        score = 0,
         lastTime;
 
     canvas.width = 505;
@@ -93,6 +94,12 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
+
+        // Check for player win
+        if( player.y === -50){
+            reset();
+            score++;
+        }
     }
 
     /* This function checks for collision between the player and the enemies.
@@ -163,7 +170,7 @@ var Engine = (function(global) {
             }
         }
         ctx.font = '30px Arial';
-        ctx.fillText('Score: ' + 0,0,40);
+        ctx.fillText('Score: ' + score,0,40);
 
         renderEntities();
     }
