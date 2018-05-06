@@ -162,6 +162,8 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
+        ctx.font = '30px Arial';
+        ctx.fillText('Score: ' + 0,0,40);
 
         renderEntities();
     }
