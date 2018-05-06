@@ -81,7 +81,8 @@ var Player = function() {
 };
 
 //Make player prototype same as enemy prototype
-Player.prototype = Enemy.prototype;
+Player.prototype = Object.create(Enemy.prototype);
+Player.prototype.constructor = Player.prototype;
 
 //Implement player handleInput
 Player.prototype.handleInput = function(key){
