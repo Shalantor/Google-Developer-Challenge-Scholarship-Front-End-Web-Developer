@@ -104,6 +104,14 @@ Player.prototype.handleInput = function(key){
     }
 }
 
+//Update player
+Player.prototype.update = function(){
+    // Check for player win
+    if( player.y === -50){
+        return true;
+    }
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player

@@ -95,8 +95,9 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
 
-        // Check for player win
-        if( player.y === -50){
+        let hasWon = player.update();
+
+        if(hasWon){
             reset();
             score++;
         }
