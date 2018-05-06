@@ -53,8 +53,19 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+
+    //Possible player sprites
+    this.possibleSprites = ['images/char-boy.png',
+                            'images/char-cat-girl.png',
+                            'images/char-horn-girl.png',
+                            'images/char-pink-girl.png',
+                            'images/char-princess-girl.png'];
+
     //The image/prite for the player
     this.sprite = 'images/char-boy.png';
+
+    //Current position of this sprite in the array of possible sprites
+    this.spritePosition = 0;
 
     // The starting x coordinate
     this.x = 200;
@@ -86,6 +97,10 @@ Player.prototype.handleInput = function(key){
     else if(key === 'down' && (this.y + this.speedY) <= 400){
         this.y += this.speedY;
     }
+    else if(key === 'enter' && (this.y === 400 && this.x === 0)){
+        this.spritePosition = (this.spritePosition + 1) % this.possibleSprites.length;
+        this.sprite = this.possibleSprites[this.spritePosition];
+    }
 }
 
 // Now instantiate your objects.
@@ -105,7 +120,8 @@ document.addEventListener('keyup', function(e) {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        13: 'enter'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
