@@ -23,7 +23,6 @@ var Enemy = function() {
      * to make it more fair for the player, because setting it exactly 100 makes
      * the game too difficult
      */
-
     this.width = 80;
 };
 
@@ -33,7 +32,6 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
     this.x += this.speed * dt ;
 
     //Moved out of screen
@@ -80,7 +78,7 @@ var Player = function() {
     this.speedY = 90;
 };
 
-//Make player prototype same as enemy prototype
+//Make player prototype from enemy prototype
 Player.prototype = Object.create(Enemy.prototype);
 Player.prototype.constructor = Player.prototype;
 
@@ -99,6 +97,7 @@ Player.prototype.handleInput = function(key){
         this.y += this.speedY;
     }
     else if(key === 'enter' && (this.y === 400 && this.x === 0)){
+        // Change player outfit/character
         this.spritePosition = (this.spritePosition + 1) % this.possibleSprites.length;
         this.sprite = this.possibleSprites[this.spritePosition];
     }
