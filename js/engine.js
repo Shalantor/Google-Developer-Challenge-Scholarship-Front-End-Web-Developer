@@ -150,6 +150,9 @@ var Engine = (function(global) {
             numCols = 5,
             row, col;
 
+        // Image for selector
+        const selectorImage = 'images/Selector.png';
+
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height)
 
@@ -171,6 +174,9 @@ var Engine = (function(global) {
         }
         ctx.font = '30px Arial';
         ctx.fillText('Score: ' + score,0,40);
+
+        // Selector in the bottom left corner
+        ctx.drawImage(Resources.get(selectorImage), 0, 400);
 
         renderEntities();
     }
@@ -209,7 +215,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Selector.png'
     ]);
     Resources.onReady(init);
 
