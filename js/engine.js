@@ -109,7 +109,7 @@ var Engine = (function(global) {
      * y values: 60,140 or 220. For the x coordinate check if the enemy
      *  overlaps the player
      */
-    function checkCollisions(){
+    function checkCollisions() {
         for(enemy of allEnemies){
 
             //Check on x axis

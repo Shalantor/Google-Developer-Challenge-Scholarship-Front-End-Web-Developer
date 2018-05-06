@@ -1,8 +1,8 @@
 //Array with acceptable start values for x coordinate
-var startValuesForX = [60,140,220];
+const startValuesForX = [60,140,220];
 
 // Enemies our player must avoid
-var Enemy = function() {
+const Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -23,7 +23,7 @@ var Enemy = function() {
      * to make it more fair for the player, because setting it exactly 100 makes
      * the game too difficult
      */
-    this.width = 80;
+    this.width = 60;
 };
 
 // Update the enemy's position, required method for game
@@ -35,7 +35,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt ;
 
     //Moved out of screen
-    if(this.x >= 505){
+    if(this.x >= 505) {
         this.x = -100;
         this.y = startValuesForX[Math.floor(Math.random() * startValuesForX.length)];
         this.speed = Math.floor(Math.random() * 500) + 200;
@@ -50,7 +50,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function() {
+const Player = function() {
 
     //Possible player sprites
     this.possibleSprites = ['images/char-boy.png',
@@ -83,7 +83,7 @@ Player.prototype = Object.create(Enemy.prototype);
 Player.prototype.constructor = Player.prototype;
 
 //Implement player handleInput
-Player.prototype.handleInput = function(key){
+Player.prototype.handleInput = function(key) {
     if(key === 'left' && (this.x - this.speedX) >= 0 ){
         this.x -= this.speedX;
     }
@@ -104,22 +104,20 @@ Player.prototype.handleInput = function(key){
 }
 
 //Update player
-Player.prototype.update = function(){
+Player.prototype.update = function() {
     // Check for player win
-    if( player.y === -50){
-        return true;
-    }
+    return player.y === -50;
 }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [];
-for(var i = 0 ; i <= 2 ; i++){
+const allEnemies = [];
+for(let i = 0 ; i <= 2 ; i++) {
     allEnemies.push(new Enemy());
 }
 
-var player = new Player();
+const player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
