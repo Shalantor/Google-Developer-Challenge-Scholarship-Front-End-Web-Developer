@@ -124,6 +124,7 @@ var Engine = (function(global) {
             //If player is hit, reset and return
             if(overlapX && overlapY){
                 reset();
+                score--;
                 return;
             }
         }
