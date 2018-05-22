@@ -111,6 +111,22 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        let feedBefore;
+
+        beforeEach(function(done){
+            loadFeed(0,function(){
+                feedBefore = document.querySelector('.feed').innerText;
+                loadFeed(1,function(){
+                    done();
+                })
+            });
+         });
+
+         it('actually changes the feed', function(done){
+            let feedAfter = document.querySelector('.feed').innerText;
+            expect(feedBefore).not.toEqual(feedAfter);
+            done();
+         });
          
     });
 }());
