@@ -116,9 +116,7 @@ $(function() {
         beforeEach(function(done){
             loadFeed(0,function(){
                 feedBefore = document.querySelector('.feed').innerText;
-                loadFeed(1,function(){
-                    done();
-                })
+                loadFeed(1,done);
             });
          });
 
