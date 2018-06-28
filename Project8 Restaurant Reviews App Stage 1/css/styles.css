@@ -276,3 +276,15 @@ nav h1 a {
 #restaurant-hours td {
   color: #666;
 }
+
+/*Responsive css*/
+@media screen and (min-width: 600px) and (max-width: 900px){
+  #restaurants-list li {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 599px){
+  #restaurants-list li {
+    width: 70%;
+  }
+}
