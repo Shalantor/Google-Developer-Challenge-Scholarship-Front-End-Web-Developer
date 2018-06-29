@@ -207,6 +207,8 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
+  padding-right: 0;
+  padding-left: 0;
   width: 50%;
 }
 #restaurant-name {
