@@ -186,7 +186,6 @@ nav h1 a {
 
 /* ====================== Restaurant Details ====================== */
 .inside header {
-  position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
@@ -288,5 +287,30 @@ nav h1 a {
 @media screen and (max-width: 599px){
   #restaurants-list li {
     width: 70%;
+  }
+}
+@media screen and (max-width: 699px){
+  .inside #map-container {
+    background: transparent;
+    height: 400px;
+    width: 90%;
+    position: initial;
+    margin: auto;
+    display: block;
+    padding-top: 30px;
+  }
+
+  #restaurant-container, #reviews-container {
+    padding: 40px 0 30px;
+    width: 80%;
+    margin: auto;
+  }
+
+  .inside #footer {
+    width: 100%;
+  }
+
+  #breadcrumb {
+    width: 100%;
   }
 }
