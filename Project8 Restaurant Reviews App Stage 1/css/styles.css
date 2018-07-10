@@ -97,6 +97,22 @@ nav h1 a {
     color: #01447e;
     text-decoration: underline;
 }
+
+/*Skip link to go to filter options*/
+.skip-link {
+  position: absolute;
+  top : -40px;
+  left: 0;
+  background: #BF1722;
+  color: white;
+  padding: 8px;
+  z-index: 1000;
+}
+
+/*Show skip link when having focus*/
+.skip-link:focus {
+  top: 0;
+}
 /* ====================== Map ====================== */
 #map {
   height: 400px;
