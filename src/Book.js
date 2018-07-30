@@ -3,13 +3,8 @@ import MoveMenu from './MoveMenu'
 
 class Book extends Component {
 
-	constructor(props) {
-	    super(props);
-	    this.state = props;
-	}
-
 	render() {
-		const {book, onRemove} = this.state;
+		const {book, onRemove} = this.props;
 		return (
 			<div className="book">
 	          <div className="book-top">
