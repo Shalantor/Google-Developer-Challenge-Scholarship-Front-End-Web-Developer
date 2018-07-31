@@ -19,6 +19,7 @@ class BookSearch extends Component {
 
       if(query !== ''){
         api.search(query).then((books) => {
+          console.log(books);
           if(books.constructor === Array && this.state.query === query){
            this.setState( (state) => ({
               query : state.query,
