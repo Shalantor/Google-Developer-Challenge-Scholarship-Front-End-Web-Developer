@@ -16,15 +16,24 @@ class BooksApp extends React.Component {
   //BookList gets notified for change
   changeShelf = (book,shelf) => {
 
+    if(shelf === book.shelf){
+      return;
+    }
+
     //Remove from app if none is selected
-    if(shelf.toLowerCase() === 'none'){
+    if(shelf === 'none'){
       this.setState( (state) => ({
         books : state.books.filter((b) => b.id !== book.id)
       }))
     }
     else{    //If other shelf is selected, change shelf
       this.setState( (state) => ({
-        books : state.books.map((b) => b.id === book.id ? b.shelf = shelf : b)
+        books : state.books.map((b) => {
+          if(b.id === book.id){
+            b.shelf = shelf;
+          }
+          return b;
+        })
       }))
     }
 
@@ -79,6 +88,7 @@ class BooksApp extends React.Component {
 
         //Categorize books correctly
         for(let found of books){
+          found.shelf = 'none';
           for(let book of this.state.books){
             if(book.id === found.id){
               found.shelf = book.shelf;
