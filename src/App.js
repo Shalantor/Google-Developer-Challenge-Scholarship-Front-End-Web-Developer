@@ -68,6 +68,16 @@ class BooksApp extends React.Component {
 
     if(query !== ''){
       api.search(query).then((books) => {
+
+        //Categorize books correctly
+        for(let found of books){
+          for(let book of this.state.books){
+            if(book.id === found.id){
+              found.shelf = book.shelf;
+            }
+          }
+        }
+
         if(books.constructor === Array && this.state.query === query){
          this.setState( (state) => ({
             query : state.query,
