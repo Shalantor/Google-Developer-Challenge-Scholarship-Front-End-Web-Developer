@@ -50,6 +50,14 @@ class BooksApp extends React.Component {
     }
   }
 
+  //Empty query when going back
+  emptyQuery = () =>{
+    this.setState({
+      query : '',
+      booksSearch : []
+    })
+  }
+
   containsBook(book) {
     for(let b of this.state.books){
       if(b.id === book.id){
@@ -96,7 +104,7 @@ class BooksApp extends React.Component {
         <BookList changeShelf = {this.changeShelf} books= {this.state.books}/>
       )}/>
       <Route path="/search" render={() => (
-        <BookSearch updateQuery = {this.updateQuery} books={this.state.booksSearch} onRemove={this.addFromSearch}/>
+        <BookSearch updateQuery = {this.updateQuery} books={this.state.booksSearch} emptyQuery={this.emptyQuery} onRemove={this.addFromSearch}/>
       )}/>
       </div>
     )
