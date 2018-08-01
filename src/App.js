@@ -13,6 +13,14 @@ class BooksApp extends React.Component {
     query : ''
   }
 
+  componentDidMount() {
+    api.getAll().then((books) => {
+      this.setState({
+        books: books
+      })
+    });
+  }
+
   //BookList gets notified for change
   changeShelf = (book,shelf) => {
 
@@ -21,42 +29,52 @@ class BooksApp extends React.Component {
     }
 
     //Remove from app if none is selected
-    if(shelf === 'none'){
-      this.setState( (state) => ({
-        books : state.books.filter((b) => b.id !== book.id)
-      }))
-    }
-    else{    //If other shelf is selected, change shelf
-      this.setState( (state) => ({
-        books : state.books.map((b) => {
-          if(b.id === book.id){
-            b.shelf = shelf;
-          }
-          return b;
-        })
-      }))
-    }
+    api.update(book,shelf).then(()=>{
+      if(shelf === 'none'){
+        this.setState( (state) => ({
+          books : state.books.filter((b) => b.id !== book.id)
+        }))
+      }
+      else{    //If other shelf is selected, change shelf
+        this.setState( (state) => ({
+          books : state.books.map((b) => {
+            if(b.id === book.id){
+              b.shelf = shelf;
+            }
+            return b;
+          })
+        }))
+      }
+    })
 
   }
 
   //Add from search
   addFromSearch = (book,shelf) => {
-    if(!this.containsBook(book)){
-      book.shelf = shelf;
-      this.setState( (state) => ({
-        books : [...state.books,book]
-      }))
+
+    if(shelf === 'none'){
+      return;
     }
-    else{
-      this.setState( (state) => ({
-        books : state.books.map((b) => {
-          if(b.id === book.id){
-            b.shelf = book.shelf;
-          }
-          return b;
-        })
-      }))
-    }
+
+    //Update database
+    api.update(book,shelf).then(() => {
+      if(!this.containsBook(book)){
+        book.shelf = shelf;
+        this.setState( (state) => ({
+          books : [...state.books,book]
+        }))
+      }
+      else{
+        this.setState( (state) => ({
+          books : state.books.map((b) => {
+            if(b.id === book.id){
+              b.shelf = book.shelf;
+            }
+            return b;
+          })
+        }))
+      }
+    })
   }
 
   //Empty query when going back
