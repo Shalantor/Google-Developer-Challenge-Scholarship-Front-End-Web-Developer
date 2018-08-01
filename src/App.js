@@ -7,12 +7,15 @@ import {Route} from 'react-router-dom';
 import * as api from './BooksAPI';
 
 class BooksApp extends React.Component {
+
+  //State of whole app
   state = {
     books: [],
     booksSearch : [],
     query : ''
   }
 
+  //When component mounts, get the books from the API
   componentDidMount() {
     api.getAll().then((books) => {
       this.setState({
@@ -21,15 +24,22 @@ class BooksApp extends React.Component {
     });
   }
 
-  //BookList gets notified for change
+  /* Function to put a book from one shelf to another
+  *
+  * Parameters:
+  * book : Book to move
+  * shelf: Shelf we want the book to move to
+  */
   changeShelf = (book,shelf) => {
 
+    //If shelf the same as the book already is, no need to move it
     if(shelf === book.shelf){
       return;
     }
 
-    //Remove from app if none is selected
+    //Update database
     api.update(book,shelf).then(()=>{
+      //Remove from database and UI shelf if option none is selected
       if(shelf === 'none'){
         this.setState( (state) => ({
           books : state.books.filter((b) => b.id !== book.id)
@@ -49,22 +59,29 @@ class BooksApp extends React.Component {
 
   }
 
-  //Add from search
+  /* Function to put a book from the search page into a shelf
+  *
+  * Parameters:
+  * book : Book to move
+  * shelf: Shelf we want the book to move to
+  */
   addFromSearch = (book,shelf) => {
 
+    //If option none is selected, skip
     if(shelf === 'none'){
       return;
     }
 
     //Update database
     api.update(book,shelf).then(() => {
+      //If book already in a shelf, update the shelf only
       if(!this.containsBook(book)){
         book.shelf = shelf;
         this.setState( (state) => ({
           books : [...state.books,book]
         }))
       }
-      else{
+      else{ //Else add the book to the selected shelf
         this.setState( (state) => ({
           books : state.books.map((b) => {
             if(b.id === book.id){
@@ -77,7 +94,7 @@ class BooksApp extends React.Component {
     })
   }
 
-  //Empty query when going back
+  //Function to empty query string when navigating back to main page.
   emptyQuery = () =>{
     this.setState({
       query : '',
@@ -85,6 +102,12 @@ class BooksApp extends React.Component {
     })
   }
 
+  /* Function to check if a certain book is in the displayed books. 
+  * In other words check if book is in any shelf.
+  * 
+  * Parameters:
+  * book: Book to search for
+  */
   containsBook(book) {
     for(let b of this.state.books){
       if(b.id === book.id){
@@ -94,8 +117,20 @@ class BooksApp extends React.Component {
     return false;
   }
 
+  /* Function that gets triggered as the user types in the search field
+  * Everytime the query of the user changes as he types, the database 
+  * gets searched for books that match that query string
+  *
+  * Paratemers:
+  * query: The query the user types in the search field
+  */
   updateQuery = (query) => {
 
+    /*First set state of the query. This way we keep the app from 
+    * from seeming to hang as the user types, because the queries 
+    * to the database take some time.
+    * Also if query is empty, remove the books that are shown.
+    */ 
     this.setState( (state) => ({
       query : query,
       booksSearch : query === '' ? [] : state.booksSearch
@@ -104,7 +139,7 @@ class BooksApp extends React.Component {
     if(query !== ''){
       api.search(query).then((books) => {
 
-        //Categorize books correctly
+        //Books that are already in a shelf, do show that shelf in search page
         for(let found of books){
           found.shelf = 'none';
           for(let book of this.state.books){
@@ -114,6 +149,15 @@ class BooksApp extends React.Component {
           }
         }
 
+        /*When there is an error an object is returned from the API. 
+        * Otherwise, on a successful search, an array is returned,
+        * which is checked here. Also the query might change fast, when 
+        * the user types and might not allow the previous database query
+        * to finish before that. So we have to make sure, that the query 
+        * we received as an argument matches the query in the state. This
+        * makes sure that the user has finished typing and is waiting for 
+        * the results to display.
+        */
         if(books.constructor === Array && this.state.query === query){
          this.setState( (state) => ({
             query : state.query,
@@ -123,7 +167,6 @@ class BooksApp extends React.Component {
       }) 
     }
   }
-
 
   render() {
     return (
