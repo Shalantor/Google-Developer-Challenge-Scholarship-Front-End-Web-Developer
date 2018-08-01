@@ -175,7 +175,7 @@ class BooksApp extends React.Component {
         <BookList changeShelf = {this.changeShelf} books= {this.state.books}/>
       )}/>
       <Route path="/search" render={() => (
-        <BookSearch updateQuery = {this.updateQuery} books={this.state.booksSearch} emptyQuery={this.emptyQuery} onRemove={this.addFromSearch}/>
+        <BookSearch updateQuery = {this.updateQuery} books={this.state.booksSearch} emptyQuery={this.emptyQuery} changeShelf={this.addFromSearch}/>
       )}/>
       </div>
     )
