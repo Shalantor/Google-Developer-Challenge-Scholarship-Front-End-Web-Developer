@@ -1,5 +1,4 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookList from './BookList';
 import BookSearch from './BookSearch';
@@ -56,7 +55,6 @@ class BooksApp extends React.Component {
         }))
       }
     })
-
   }
 
   /* Function to put a book from the search page into a shelf
@@ -171,12 +169,13 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-      <Route exact path="/" render={() => (
-        <BookList changeShelf = {this.changeShelf} books= {this.state.books}/>
-      )}/>
-      <Route path="/search" render={() => (
-        <BookSearch updateQuery = {this.updateQuery} books={this.state.booksSearch} emptyQuery={this.emptyQuery} changeShelf={this.addFromSearch}/>
-      )}/>
+        <Route exact path="/" render={() => (
+          <BookList changeShelf = {this.changeShelf} books= {this.state.books}/>
+        )}/>
+        <Route path="/search" render={() => (
+          <BookSearch updateQuery = {this.updateQuery} books={this.state.booksSearch} 
+          emptyQuery={this.emptyQuery} changeShelf={this.addFromSearch}/>
+        )}/>
       </div>
     )
   }
