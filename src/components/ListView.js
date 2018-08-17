@@ -7,17 +7,20 @@ class ListView extends Component {
    return(
     <div>
       <div className="nav">
+        <button><i className="fa fa-bars"></i></button>
+      </div>
+      <div className="list-view">
         <h1>Locations</h1>
+        <div className="filter">
+          <input type="text" placeholder="Filter locations"/>
+        </div>
+        <ul className="list">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
       </div>
-      <div className="filter">
-        <input type="text" placeholder="Filter locations"/>
-      </div>
-      <ul className="list">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-      </ul>
     </div>
    );
 
