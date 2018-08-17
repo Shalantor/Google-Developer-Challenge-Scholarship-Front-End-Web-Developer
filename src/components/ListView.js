@@ -13,6 +13,7 @@ class ListView extends Component {
         <h1>Locations</h1>
         <div className="filter">
           <input type="text" placeholder="Filter locations"/>
+          <button><i className="fa fa-filter">Filter</i></button>
         </div>
         <ul className="list">
           <li>1</li>
