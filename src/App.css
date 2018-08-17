@@ -5,6 +5,7 @@ body {
   line-height: 1.5;
 }
 
+/*Navigation bar*/
 .nav {
   background-color: black;
   min-height: 50px;
@@ -19,4 +20,49 @@ body {
   background-color: black;
   border: none;
   font-size: 30px;
+}
+
+/*List View*/
+.list-view {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  min-width: 300px;
+  z-index: 9999;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.filter {
+  width: 100%;
+}
+
+.filter input {
+  font-size: 20px;
+  width: 65%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.filter button {
+  width: 30%;
+  font-size: 20px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.list {
+  list-style-type: none;
+  font-size: 20px;
+  margin-left: 0;
+  padding: 0;
+}
+
+.list li {
+  width: 90%;
+  text-align: left;
+  margin: auto;
+  margin-top:10px;
 }
