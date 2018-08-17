@@ -1,0 +1,22 @@
+html, body, .root {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+}
+
+.nav {
+  background-color: black;
+  min-height: 50px;
+}
+
+.nav button {
+  min-width: 50px;
+  min-height: 40px;
+  margin-top: 5px;
+  margin-left: 5px;
+  color: #09f;
+  background-color: black;
+  border: none;
+  font-size: 30px;
+}
