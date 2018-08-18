@@ -10,6 +10,7 @@
 =======
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-geocode": "^0.1.2",
     "react-google-maps": "^9.4.5",
 >>>>>>> b904060... Feat: Add new dependencies for react google maps:package.json
     "react-scripts": "1.1.4"
