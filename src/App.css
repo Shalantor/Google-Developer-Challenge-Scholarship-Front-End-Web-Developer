@@ -8,7 +8,8 @@ body {
 /*Navigation bar*/
 .nav {
   background-color: black;
-  min-height: 50px;
+  min-height: 80px;
+  height: 10%;
 }
 
 .nav button {
@@ -28,7 +29,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  min-width: 300px;
+  width: 20%;
   z-index: 9999;
   background-color: black;
   color: white;
@@ -65,4 +66,18 @@ body {
   text-align: left;
   margin: auto;
   margin-top:10px;
+}
+
+/*Map and map container*/
+.map-container {
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  height: 90%;
+  width: 80%;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
 }

@@ -16,8 +16,8 @@ class Map extends Component {
    return(
       <div>
         <Map
-          containerElement={ <div style={{ height: `500px`, width: '500px' }} /> }
-          mapElement={ <div style={{ height: `100%` }} /> }
+          containerElement={ <div className="map-container"/> }
+          mapElement={ <div className="map" /> }
         />
       </div>
    );
