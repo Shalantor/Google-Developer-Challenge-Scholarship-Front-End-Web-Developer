@@ -28,7 +28,7 @@ class App extends Component {
 			lat: 48.85833,
 			lng: 2.337500
 		}],
-		allMarkers : []
+		allMarkers : this.markersShown
 	}
 
 	//When component mounts, get the coordinates from the api
@@ -40,7 +40,7 @@ class App extends Component {
 	render() {
 		return (
 		  <div className="App">
-		    <ListView/>
+		    <ListView markers={this.state.markersShown}/>
 		    <Map center={this.state.center} markers={this.state.markersShown}/>
 		  </div>
 		);

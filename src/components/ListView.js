@@ -16,10 +16,9 @@ class ListView extends Component {
           <button><i className="fa fa-filter">Filter</i></button>
         </div>
         <ul className="list">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
+          {this.props.markers.map((marker =>
+            <li key = {marker.name} >{marker.location}</li>
+          ))}
         </ul>
       </div>
     </div>
