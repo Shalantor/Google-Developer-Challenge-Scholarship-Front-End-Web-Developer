@@ -3,11 +3,7 @@ import './App.css';
 import Map from './components/Map';
 import ListView from './components/ListView';
 
-class App extends Component {
-
-	state = {
-		center : {location: "Eiffel Tower", lat: 48.858372, lng: 2.2945},
-		markersShown : [{
+const markers = [{
 			location: "Les Invalides",
 			lat: 48.858410,
 			lng: 2.313020
@@ -27,8 +23,14 @@ class App extends Component {
 			location: "Pont des Arts",
 			lat: 48.85833,
 			lng: 2.337500
-		}],
-		allMarkers : this.markersShown
+		}];
+
+class App extends Component {
+
+	state = {
+		center : {location: "Eiffel Tower", lat: 48.858372, lng: 2.2945},
+		markersShown : markers,
+		allMarkers : markers
 	}
 
 	//When component mounts, get the coordinates from the api
@@ -36,11 +38,25 @@ class App extends Component {
 
 	};
 
+	//Filter locations when button is pressed
+	filterLocations = (input) => {
+		if(input !== ''){
+			let newMarkers = this.state.allMarkers.filter(marker => marker.location.includes(input));
+			this.setState({
+				markersShown : newMarkers
+			})
+		}
+		else{
+			this.setState({
+				markersShown : this.state.allMarkers
+			})
+		}
+	}
 
 	render() {
 		return (
 		  <div className="App">
-		    <ListView markers={this.state.markersShown}/>
+		    <ListView markers={this.state.markersShown} onFilter = {this.filterLocations}/>
 		    <Map center={this.state.center} markers={this.state.markersShown}/>
 		  </div>
 		);
