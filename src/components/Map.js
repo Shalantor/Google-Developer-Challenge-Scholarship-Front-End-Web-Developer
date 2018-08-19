@@ -11,8 +11,10 @@ class Map extends Component {
         defaultZoom = { 13 }
       >
       {this.props.markers.map((marker =>
-        <Marker key = {`${marker.lat} ${marker.lng}`}  position = {{lat: marker.lat, lng: marker.lng}}>
-        {marker.isVisible && <InfoWindow><div>{marker.location}</div></InfoWindow>}
+        <Marker onClick={() => this.props.onToggle(marker.location)} 
+        key = {`${marker.lat} ${marker.lng}`}  
+        position = {{lat: marker.lat, lng: marker.lng}}>
+        {marker.isVisible && <InfoWindow onCloseClick={() => this.props.onToggle(marker.location)}><div>{marker.location}</div></InfoWindow>}
         </Marker>
       ))}
       </GoogleMap>

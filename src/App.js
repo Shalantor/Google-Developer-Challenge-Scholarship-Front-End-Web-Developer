@@ -59,6 +59,7 @@ class App extends Component {
 
 	//Toogle visibility of infowindow of marker
 	toggleMarker = (location) => {
+		console.log(location);
 		this.setState((state) => ({
 			markersShown : state.markersShown.map((marker) => {
 				if(marker.location === location){
@@ -72,8 +73,8 @@ class App extends Component {
 	render() {
 		return (
 		  <div className="App">
-		    <ListView markers={this.state.markersShown} onToggle = {this.toggleMarker} onFilter = {this.filterLocations}/>
-		    <Map center={this.state.center} markers={this.state.markersShown}/>
+		    <ListView markers={this.state.markersShown} onFilter = {this.filterLocations}/>
+		    <Map center={this.state.center} onToggle = {this.toggleMarker} markers={this.state.markersShown}/>
 		  </div>
 		);
 		}
