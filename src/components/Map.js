@@ -3,31 +3,34 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 const google = window.google;
 
-class Map extends Component {
-
-   render() {
-
-   const Map = withGoogleMap(props => (
+const RenderMap = withGoogleMap(props => (
       <GoogleMap
-        defaultCenter = { { lat: this.props.center.lat, lng: this.props.center.lng } }
+        defaultCenter = { { lat: props.center.lat, lng: props.center.lng } }
         defaultZoom = { 13 }
       >
-      {this.props.markers.map((marker =>
-        <Marker onClick={() => this.props.onToggle(marker.location)} 
+      {props.markers.map((marker =>
+        <Marker onClick={() => props.onToggle(marker.location)} 
         key = {`${marker.lat} ${marker.lng}`}  
         position = {{lat: marker.lat, lng: marker.lng}}
         animation = {marker.animate ? google.maps.Animation.DROP : null}>
-        {marker.isVisible && <InfoWindow onCloseClick={() => this.props.onToggle(marker.location)}><div>{marker.location}</div></InfoWindow>}
+        {marker.isVisible && <InfoWindow onCloseClick={() => props.onToggle(marker.location)}><div>{marker.location}</div></InfoWindow>}
         </Marker>
       ))}
       </GoogleMap>
    ));
 
+class Map extends Component {
+
+   render() {
+
    return(
       <div>
-        <Map
+        <RenderMap
           containerElement={ <div className="map-container"/> }
           mapElement={ <div className="map" /> }
+          center = {this.props.center}
+          markers = {this.props.markers}
+          onToggle = {this.props.onToggle}
         />
       </div>
    );
