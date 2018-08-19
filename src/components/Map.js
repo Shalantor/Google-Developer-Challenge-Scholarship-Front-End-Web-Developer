@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 class Map extends Component {
 
@@ -11,7 +11,9 @@ class Map extends Component {
         defaultZoom = { 13 }
       >
       {this.props.markers.map((marker =>
-        <Marker key = {`${marker.lat} ${marker.lng}`}  position = {{lat: marker.lat, lng: marker.lng}}/>
+        <Marker key = {`${marker.lat} ${marker.lng}`}  position = {{lat: marker.lat, lng: marker.lng}}>
+        {marker.isVisible && <InfoWindow><div>{marker.location}</div></InfoWindow>}
+        </Marker>
       ))}
       </GoogleMap>
    ));
