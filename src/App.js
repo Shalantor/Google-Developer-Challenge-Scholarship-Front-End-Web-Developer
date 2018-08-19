@@ -6,23 +6,28 @@ import ListView from './components/ListView';
 const markers = [{
 			location: "Les Invalides",
 			lat: 48.858410,
-			lng: 2.313020
+			lng: 2.313020,
+			isVisible : false
 		},{
 			location: "Le Parc des Princes",
 			lat: 48.841050,
-			lng: 2.254560
+			lng: 2.254560,
+			isVisible : false
 		},{
 			location: "Quai Branly Museum",
 			lat: 48.860540,
-			lng: 2.295630
+			lng: 2.295630,
+			isVisible : false
 		},{
 			location: "Lido de Paris",
 			lat: 48.87236,
-			lng: 2.300561
+			lng: 2.300561,
+			isVisible : false
 		},{
 			location: "Pont des Arts",
 			lat: 48.85833,
-			lng: 2.337500
+			lng: 2.337500,
+			isVisible : false
 		}];
 
 class App extends Component {
@@ -41,10 +46,9 @@ class App extends Component {
 	//Filter locations when button is pressed
 	filterLocations = (input) => {
 		if(input !== ''){
-			let newMarkers = this.state.allMarkers.filter(marker => marker.location.includes(input));
-			this.setState({
-				markersShown : newMarkers
-			})
+			this.setState((state) => ({
+				markersShown : state.allMarkers.filter(marker => marker.location.includes(input))
+			}));
 		}
 		else{
 			this.setState({
@@ -53,10 +57,22 @@ class App extends Component {
 		}
 	}
 
+	//Toogle visibility of infowindow of marker
+	toggleMarker = (location) => {
+		this.setState((state) => ({
+			markersShown : state.markersShown.map((marker) => {
+				if(marker.location === location){
+					marker.isVisible = !marker.isVisible;
+				}
+				return marker;
+			})
+		}));
+	}
+
 	render() {
 		return (
 		  <div className="App">
-		    <ListView markers={this.state.markersShown} onFilter = {this.filterLocations}/>
+		    <ListView markers={this.state.markersShown} onToggle = {this.toggleMarker} onFilter = {this.filterLocations}/>
 		    <Map center={this.state.center} markers={this.state.markersShown}/>
 		  </div>
 		);
