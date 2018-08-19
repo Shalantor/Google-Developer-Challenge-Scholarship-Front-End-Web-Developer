@@ -28,7 +28,7 @@ class ListView extends Component {
         </div>
         <ul className="list">
           {this.props.markers.map((marker =>
-            <li key = {marker.location} >{marker.location}</li>
+            <li onClick={() => this.props.onChoose(marker.location)} key = {marker.location} >{marker.location}</li>
           ))}
         </ul>
       </div>
