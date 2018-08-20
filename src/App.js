@@ -3,6 +3,15 @@ import './App.css';
 import Map from './components/Map';
 import ListView from './components/ListView';
 
+const apiUrl = (lat,lng,query) => `https://api.foursquare.com/v2/venues/search?
+	client_id=BP1WT40QN3RRWCSYCXFS3IQHZJT0YCLB43A5XSZ24CDBXKLE&
+	client_secret=R5JUNTFIBPUPXNDYVGMSFCAQ15BS4KD0BEEJKH4ETFZPQ2E1&
+	v=20180323&limit=10&ll=${lat},${lng}&query=${query}`;
+
+const photoUrl = (id) => `https://api.foursquare.com/v2/venues/${id}/photos?
+	client_id=BP1WT40QN3RRWCSYCXFS3IQHZJT0YCLB43A5XSZ24CDBXKLE&
+	client_secret=R5JUNTFIBPUPXNDYVGMSFCAQ15BS4KD0BEEJKH4ETFZPQ2E1&v=20180323`;
+
 const markers = [{
 			location: "Les Invalides",
 			lat: 48.858410,
@@ -45,7 +54,21 @@ class App extends Component {
 
 	//When component mounts, get the coordinates from the api
 	componentDidMount() {
-
+		for(let marker of this.state.allMarkers){
+			fetch(apiUrl(marker.lat,marker.lng,marker.location))
+			.then(function(response) {
+			    return response.json();
+			})
+			.then(function(myJson) {
+			  fetch(photoUrl(myJson.response.venues[0].id))
+			  .then(function(response) {
+			    return response.json();
+				})
+			  .then(function(myJson) {
+			  	console.log(myJson);
+			  })
+			});
+		}
 	};
 
 	//Filter locations when button is pressed
