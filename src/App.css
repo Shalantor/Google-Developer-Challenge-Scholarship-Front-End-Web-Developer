@@ -81,3 +81,16 @@ body {
   height: 100%;
   width: 100%;
 }
+
+/*Error window-notification*/
+.error-window {
+  max-height: 50px;
+  max-width: 500px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: white;
+  background-color: gray;
+  z-index: 9999;
+  font-size: 1 px;
+}
