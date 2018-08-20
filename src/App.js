@@ -49,7 +49,8 @@ class App extends Component {
 	state = {
 		center : {location: "Eiffel Tower", lat: 48.858372, lng: 2.2945},
 		markersShown : markers,
-		allMarkers : markers
+		allMarkers : markers,
+		errorsHappened : false
 	}
 
 	//When component mounts, get the coordinates from the api
@@ -57,13 +58,31 @@ class App extends Component {
 		for(let marker of this.state.allMarkers){
 			fetch(apiUrl(marker.lat,marker.lng,marker.location))
 			.then(function(response) {
-			    return response.json();
+			    if(response.status === 200){
+			    	return response.json();
+			    }
+			    else{
+			    	throw new Error();
+			    }
 			})
+			.catch(error => 
+				this.setState({
+					errorsHappened : true
+			}))
 			.then(function(myJson) {
 			  fetch(photoUrl(myJson.response.venues[0].id))
 			  .then(function(response) {
-			    return response.json();
+				    if(response.status === 200){
+				    	return response.json();
+				    }
+				    else{
+				    	throw new Error();
+				    }
 				})
+			  .catch(error => 
+				this.setState({
+					errorsHappened : true
+				}))
 			  .then(function(myJson) {
 			  	this.setState(state => ({
 			  		allMarkers : state.allMarkers.map(m => {
