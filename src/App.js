@@ -10,7 +10,8 @@ const apiUrl = (lat,lng,query) => `https://api.foursquare.com/v2/venues/search?
 
 const photoUrl = (id) => `https://api.foursquare.com/v2/venues/${id}/photos?
 	client_id=BP1WT40QN3RRWCSYCXFS3IQHZJT0YCLB43A5XSZ24CDBXKLE&
-	client_secret=R5JUNTFIBPUPXNDYVGMSFCAQ15BS4KD0BEEJKH4ETFZPQ2E1&v=20180323`;
+	client_secret=R5JUNTFIBPUPXNDYVGMSFCAQ15BS4KD0BEEJKH4ETFZPQ2E1
+	&v=20180323&limit=1`;
 
 const markers = [{
 			location: "Les Invalides",
@@ -139,7 +140,7 @@ class App extends Component {
 	render() {
 		return (
 		  <div className="App">
-		    <ListView onChoose={this.animateMarker} markers={this.state.markersShown} onFilter = {this.filterLocations}/>
+		    <ListView errorsHappened={this.state.errorsHappened} onChoose={this.animateMarker} markers={this.state.markersShown} onFilter = {this.filterLocations}/>
 		    <Map center={this.state.center} onToggle = {this.toggleMarker} markers={this.state.markersShown}/>
 		  </div>
 		);
