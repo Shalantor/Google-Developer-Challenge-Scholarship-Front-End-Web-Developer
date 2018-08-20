@@ -65,7 +65,14 @@ class App extends Component {
 			    return response.json();
 				})
 			  .then(function(myJson) {
-			  	console.log(myJson);
+			  	this.setState(state => ({
+			  		allMarkers : state.allMarkers.map(m => {
+			  			if(m.location === marker.location){
+			  				m.img = myJson.response.photos.items[0].prefix + '100x100' + myJson.response.photos.items[0].suffix;
+			  			}
+			  			return m;
+			  		})
+			  	}))
 			  })
 			});
 		}
