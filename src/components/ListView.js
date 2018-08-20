@@ -32,6 +32,13 @@ class ListView extends Component {
           ))}
         </ul>
       </div>
+      {this.props.errorsHappened && 
+        <div className="error-window">
+          Some images or data may have 
+          failed to be downloaded properly.
+          You can try to refresh the page to fix this error.
+        </div>
+      }
     </div>
    );
 
