@@ -3,13 +3,21 @@ import React, { Component } from 'react';
 class ListView extends Component {
 
   state = {
-    input : ''
+    input : '',
+    showErrorWindow : true
   }
 
   //Update input
   updateInput = (input) => {
     this.setState({
       input : input
+    })
+  }
+
+  //close the error window
+  closeErrorWindow = () => {
+    this.setState({
+      showErrorWindow : false
     })
   }
 
@@ -32,8 +40,10 @@ class ListView extends Component {
           ))}
         </ul>
       </div>
-      {this.props.errorsHappened && 
+      {this.props.errorsHappened && this.state.showErrorWindow &&
         <div className="error-window">
+        <button onClick={() => this.closeErrorWindow()} 
+          className="close-button"><i className="fa fa-times"/></button>
           <p>Some images or data may have 
           failed to be downloaded properly.
           You can try to refresh the page to fix this error.</p>
