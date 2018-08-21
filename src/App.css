@@ -21,6 +21,7 @@ body {
   background-color: #1a1a1a;
   border: none;
   font-size: 30px;
+  cursor: pointer;
 }
 
 .move-left {
@@ -63,6 +64,7 @@ body {
   font-size: 20px;
   margin: auto;
   margin-top: 5px;
+  cursor: pointer;
 }
 
 .list {
@@ -78,6 +80,11 @@ body {
   margin: auto;
   margin-top:10px;
   border-bottom: 1px solid #e6e6e6;
+  cursor: pointer;
+}
+
+.list li:hover {
+  background-color: #1a1a1a;
 }
 
 /*Map and map container*/
