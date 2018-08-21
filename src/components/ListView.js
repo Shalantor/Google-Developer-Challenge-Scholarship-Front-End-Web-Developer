@@ -4,7 +4,8 @@ class ListView extends Component {
 
   state = {
     input : '',
-    showErrorWindow : true
+    showErrorWindow : true,
+    showList : true
   }
 
   //Update input
@@ -21,14 +22,24 @@ class ListView extends Component {
     })
   }
 
+  //Toggle list view
+  toggleList = () => {
+    this.setState(state => ({
+      showList : !state.showList
+    }))
+  }
+
    render() {
 
    return(
     <div>
       <div className="nav">
-        <button><i className="fa fa-bars"></i></button>
+        <button onClick={() => this.toggleList()} 
+          className={"nav-button " + (this.state.showList ? '' : 'move-left')}>
+          <i className="fa fa-bars"></i>
+        </button>
       </div>
-      <div className="list-view">
+      <div className={"list-view" + (this.state.showList ? '' : 'hidden')}>
         <h1>Locations</h1>
         <div className="filter">
           <input type="text" placeholder="Filter locations" onChange={(event) => this.updateInput(event.target.value)}/>
