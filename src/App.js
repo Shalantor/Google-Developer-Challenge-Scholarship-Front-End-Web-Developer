@@ -97,13 +97,10 @@ class App extends Component {
 				    	return response.json();
 				    }
 				    else{
+				    	console.log('here maestro');
 				    	throw new Error();
 				    }
 				})
-			  .catch(error => 
-				that.setState({
-					errorsHappened : true
-				}))
 			  .then(function(myJson) {
 				that.setState((state) => ({
 					markersShown : state.markersShown.map((m) => {
@@ -116,6 +113,10 @@ class App extends Component {
 					})
 				}));
 			  })
+			  .catch(error => 
+				that.setState({
+					errorsHappened : true
+				}))
 			});
 		}
 		else{
