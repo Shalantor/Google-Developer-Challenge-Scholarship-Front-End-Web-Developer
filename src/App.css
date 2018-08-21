@@ -101,6 +101,10 @@ body {
   width: 100%;
 }
 
+img {
+  color: #808080;
+}
+
 /*Error window-notification*/
 .error-window {
   position: absolute;
