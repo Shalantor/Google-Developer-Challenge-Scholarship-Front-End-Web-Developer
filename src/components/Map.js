@@ -9,11 +9,11 @@ const RenderMap = withGoogleMap(props => (
         defaultZoom = { 13 }
       >
       {props.markers.map((marker =>
-        <Marker onClick={() => props.onToggle(marker.location)} 
+        <Marker onClick={() => props.onToggle(marker)} 
         key = {`${marker.lat} ${marker.lng}`}  
         position = {{lat: marker.lat, lng: marker.lng}}
         animation = {marker.animate ? google.maps.Animation.DROP : null}>
-        {marker.isVisible && <InfoWindow onCloseClick={() => props.onToggle(marker.location)}>
+        {marker.isVisible && <InfoWindow onCloseClick={() => props.onToggle(marker)}>
           <div><img src={marker.img} alt={marker.location}/><p>{marker.location}</p></div></InfoWindow>}
         </Marker>
       ))}
