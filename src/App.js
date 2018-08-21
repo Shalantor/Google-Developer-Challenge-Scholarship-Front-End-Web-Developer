@@ -74,7 +74,7 @@ class App extends Component {
 	}
 
 	//Show info of marker, helper function to determine if loading api is needed
-	loadInfo = (marker) => {
+	loadInfo = (marker,animate) => {
 		const that = this;
 		if(marker.img === undefined){
 			fetch(apiUrl(marker.lat,marker.lng,marker.location))
@@ -109,7 +109,8 @@ class App extends Component {
 					markersShown : state.markersShown.map((m) => {
 						if(marker.location === m.location){
 							m.img = myJson.response.photos.items[0].prefix + '100x100' + myJson.response.photos.items[0].suffix;
-							m.isVisible = !m.isVisible;
+							m.isVisible = animate ? true : !m.isVisible;
+							m.animate = animate;
 						}
 						return m;
 					})
@@ -121,7 +122,8 @@ class App extends Component {
 			this.setState((state) => ({
 				markersShown : state.markersShown.map((m) => {
 					if(marker.location === m.location){
-						m.isVisible = !m.isVisible;
+						m.isVisible = animate ? true : !m.isVisible;
+						m.animate = animate;
 					}
 					return m;
 				})
@@ -129,23 +131,10 @@ class App extends Component {
 		}
 	}
 
-	//animate marker
-	animateMarker = (location) => {
-		this.setState((state) => ({
-			markersShown : state.markersShown.map((marker) => {
-				if(marker.location === location){
-					marker.isVisible = true;
-					marker.animate = true;
-				}
-				return marker;
-			})
-		}));
-	}
-
 	render() {
 		return (
 		  <div className="App">
-		    <ListView errorsHappened={this.state.errorsHappened} onChoose={this.animateMarker} markers={this.state.markersShown} onFilter = {this.filterLocations}/>
+		    <ListView errorsHappened={this.state.errorsHappened} onChoose={this.loadInfo} markers={this.state.markersShown} onFilter = {this.filterLocations}/>
 		    <Map center={this.state.center} onToggle = {this.loadInfo} markers={this.state.markersShown}/>
 		  </div>
 		);
