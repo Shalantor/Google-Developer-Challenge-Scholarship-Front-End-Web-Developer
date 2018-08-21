@@ -120,7 +120,7 @@ class App extends Component {
 			});
 		}
 		else{
-			this.setState((state) => ({
+			that.setState((state) => ({
 				markersShown : state.markersShown.map((m) => {
 					if(marker.location === m.location){
 						m.isVisible = animate ? true : !m.isVisible;
