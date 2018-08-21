@@ -12,7 +12,7 @@ const RenderMap = withGoogleMap(props => (
         <Marker onClick={() => props.onToggle(marker)} 
         key = {`${marker.lat} ${marker.lng}`}  
         position = {{lat: marker.lat, lng: marker.lng}}
-        animation = {marker.animate ? google.maps.Animation.DROP : null}>
+        animation = {marker.animate ? google.maps.Animation.BOUNCE : null}>
         {marker.isVisible && <InfoWindow onCloseClick={() => props.onToggle(marker,false)}>
           <div><img src={marker.img} alt={marker.location + ' in Paris, France'} /><p>{marker.location}</p></div></InfoWindow>}
         </Marker>
