@@ -87,9 +87,16 @@ class App extends Component {
 			    }
 			})
 			.catch(error => 
-				that.setState({
-					errorsHappened : true
-			}))
+				that.setState((state) => ({
+					errorsHappened : true,
+					markersShown : state.markersShown.map((m) => {
+					if(marker.location === m.location){
+						m.isVisible = animate ? true : !m.isVisible;
+						m.animate = animate;
+					}
+					return m;
+				})
+			})))
 			.then(function(myJson) {
 			  fetch(photoUrl(myJson.response.venues[0].id))
 			  .then(function(response) {
@@ -97,7 +104,6 @@ class App extends Component {
 				    	return response.json();
 				    }
 				    else{
-				    	console.log('here maestro');
 				    	throw new Error();
 				    }
 				})
@@ -114,9 +120,16 @@ class App extends Component {
 				}));
 			  })
 			  .catch(error => 
-				that.setState({
-					errorsHappened : true
-				}))
+				that.setState((state) => ({
+					errorsHappened : true,
+					markersShown : state.markersShown.map((m) => {
+					if(marker.location === m.location){
+						m.isVisible = animate ? true : !m.isVisible;
+						m.animate = animate;
+					}
+					return m;
+				})
+				})))
 			});
 		}
 		else{
