@@ -126,6 +126,7 @@ img {
   right: 0;
   top: 0;
   display: block;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 500px) {
