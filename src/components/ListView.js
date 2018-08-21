@@ -60,6 +60,9 @@ class ListView extends Component {
           You can try to refresh the page to fix this error.</p>
         </div>
       }
+      <div className='data-sources'>
+        Images provided by <a href='https:\/\/foursquare.com'>foursquare</a> API
+      </div>
     </div>
    );
 
