@@ -18,31 +18,36 @@ const markers = [{
 			lat: 48.858410,
 			lng: 2.313020,
 			isVisible : false,
-			animate : false
+			animate : false,
+			img : undefined
 		},{
 			location: "Le Parc des Princes",
 			lat: 48.841050,
 			lng: 2.254560,
 			isVisible : false,
-			animate : false
+			animate : false,
+			img : undefined
 		},{
 			location: "Quai Branly Museum",
 			lat: 48.860540,
 			lng: 2.295630,
 			isVisible : false,
-			animate : false
+			animate : false,
+			img : undefined
 		},{
 			location: "Lido de Paris",
 			lat: 48.87236,
 			lng: 2.300561,
 			isVisible : false,
-			animate : false
+			animate : false,
+			img : undefined
 		},{
 			location: "Pont des Arts",
 			lat: 48.85833,
 			lng: 2.337500,
 			isVisible : false,
-			animate : false
+			animate : false,
+			img : undefined
 		}];
 
 class App extends Component {
@@ -53,50 +58,6 @@ class App extends Component {
 		allMarkers : markers,
 		errorsHappened : false
 	}
-
-	//When component mounts, get the coordinates from the api
-	componentDidMount() {
-		for(let marker of this.state.allMarkers){
-			fetch(apiUrl(marker.lat,marker.lng,marker.location))
-			.then(function(response) {
-			    if(response.status === 200){
-			    	return response.json();
-			    }
-			    else{
-			    	throw new Error();
-			    }
-			})
-			.catch(error => 
-				this.setState({
-					errorsHappened : true
-			}))
-			.then(function(myJson) {
-			  fetch(photoUrl(myJson.response.venues[0].id))
-			  .then(function(response) {
-				    if(response.status === 200){
-				    	return response.json();
-				    }
-				    else{
-				    	throw new Error();
-				    }
-				})
-			  .catch(error => 
-				this.setState({
-					errorsHappened : true
-				}))
-			  .then(function(myJson) {
-			  	this.setState(state => ({
-			  		allMarkers : state.allMarkers.map(m => {
-			  			if(m.location === marker.location){
-			  				m.img = myJson.response.photos.items[0].prefix + '100x100' + myJson.response.photos.items[0].suffix;
-			  			}
-			  			return m;
-			  		})
-			  	}))
-			  })
-			});
-		}
-	};
 
 	//Filter locations when button is pressed
 	filterLocations = (input) => {
@@ -112,16 +73,60 @@ class App extends Component {
 		}
 	}
 
-	//Toogle visibility of infowindow of marker
-	toggleMarker = (location) => {
-		this.setState((state) => ({
-			markersShown : state.markersShown.map((marker) => {
-				if(marker.location === location){
-					marker.isVisible = !marker.isVisible;
-				}
-				return marker;
+	//Show info of marker, helper function to determine if loading api is needed
+	loadInfo = (marker) => {
+		const that = this;
+		if(marker.img === undefined){
+			fetch(apiUrl(marker.lat,marker.lng,marker.location))
+			.then(function(response) {
+			    if(response.status === 200){
+			    	return response.json();
+			    }
+			    else{
+			    	throw new Error();
+			    }
 			})
-		}));
+			.catch(error => 
+				that.setState({
+					errorsHappened : true
+			}))
+			.then(function(myJson) {
+			  fetch(photoUrl(myJson.response.venues[0].id))
+			  .then(function(response) {
+				    if(response.status === 200){
+				    	return response.json();
+				    }
+				    else{
+				    	throw new Error();
+				    }
+				})
+			  .catch(error => 
+				that.setState({
+					errorsHappened : true
+				}))
+			  .then(function(myJson) {
+				that.setState((state) => ({
+					markersShown : state.markersShown.map((m) => {
+						if(marker.location === m.location){
+							m.img = myJson.response.photos.items[0].prefix + '100x100' + myJson.response.photos.items[0].suffix;
+							m.isVisible = !m.isVisible;
+						}
+						return m;
+					})
+				}));
+			  })
+			});
+		}
+		else{
+			this.setState((state) => ({
+				markersShown : state.markersShown.map((m) => {
+					if(marker.location === m.location){
+						m.isVisible = !m.isVisible;
+					}
+					return m;
+				})
+			}));
+		}
 	}
 
 	//animate marker
@@ -141,7 +146,7 @@ class App extends Component {
 		return (
 		  <div className="App">
 		    <ListView errorsHappened={this.state.errorsHappened} onChoose={this.animateMarker} markers={this.state.markersShown} onFilter = {this.filterLocations}/>
-		    <Map center={this.state.center} onToggle = {this.toggleMarker} markers={this.state.markersShown}/>
+		    <Map center={this.state.center} onToggle = {this.loadInfo} markers={this.state.markersShown}/>
 		  </div>
 		);
 		}
