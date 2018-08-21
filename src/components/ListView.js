@@ -35,7 +35,7 @@ class ListView extends Component {
     <div>
       <div className="nav">
         <button onClick={() => this.toggleList()} 
-          className={"nav-button " + (this.state.showList ? '' : 'move-left')}>
+          className={"nav-button " + (this.state.showList ? '' : 'move-left move-left-small')}>
           <i className="fa fa-bars"></i>
         </button>
       </div>
