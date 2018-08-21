@@ -12,15 +12,19 @@ body {
   height: 10%;
 }
 
-.nav button {
+.nav-button {
   min-width: 50px;
   min-height: 40px;
   margin-top: 10px;
-  margin-left : 10px;
+  margin-left: 30%;
   color: #09f;
-  background-color: black;
+  background-color: #1a1a1a;
   border: none;
   font-size: 30px;
+}
+
+.move-left {
+  margin-left: 10px;
 }
 
 /*List View*/
@@ -29,11 +33,15 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  width: 20%;
+  width: 30%;
   z-index: 9999;
   background-color: black;
   color: white;
   text-align: center;
+}
+
+.hidden {
+  left: -30%;
 }
 
 .filter {
@@ -75,10 +83,10 @@ body {
 /*Map and map container*/
 .map-container {
   position: absolute;
-  left: 20%;
+  left: 0;
   top: 10%;
   height: 90%;
-  width: 80%;
+  width: 100%;
 }
 
 .map {
@@ -107,16 +115,4 @@ body {
   right: 0;
   top: 0;
   display: block;
-}
-
-@media screen and (max-width: 800px){
-  .list-view {
-    width: 300px;
-    left: -300px;
-  }
-
-  .map-container {
-    width: 100%;
-    left: 0;
-  }
 }
