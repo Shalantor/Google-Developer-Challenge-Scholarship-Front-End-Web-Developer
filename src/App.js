@@ -76,7 +76,7 @@ class App extends Component {
 	//Show info of marker, helper function to determine if loading api is needed
 	loadInfo = (marker,animate) => {
 		const that = this;
-		if(marker.img === undefined){
+		if(marker.img === undefined && !this.state.errorsHappened){
 			fetch(apiUrl(marker.lat,marker.lng,marker.location))
 			.then(function(response) {
 			    if(response.status === 200){
