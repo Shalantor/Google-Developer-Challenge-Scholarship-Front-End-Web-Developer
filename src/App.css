@@ -24,6 +24,7 @@ body {
   cursor: pointer;
 }
 
+/*Move the list toggle button to left when list is closed*/
 .move-left {
   margin-left: 10px;
 }
@@ -101,6 +102,7 @@ body {
   width: 100%;
 }
 
+/*Color of alt text for images*/
 img {
   color: #808080;
 }
@@ -130,7 +132,7 @@ img {
   cursor: pointer;
 }
 
-/*Data sources*/
+/*Data sources, foursquare API*/
 .data-sources {
   position: absolute;
   font-size: 10px;
@@ -140,6 +142,7 @@ img {
   padding: 0;
 }
 
+/*Responsice css*/
 @media only screen and (max-width: 500px) {
 
   .list-view {

@@ -3,6 +3,10 @@ import './App.css';
 import Map from './components/Map';
 import ListView from './components/ListView';
 
+/* The urls to use for the foursquare api. One gets
+ * an id for a place and the other gets photos for 
+ * the id which was returned by the first one 
+ */
 const apiUrl = (lat,lng,query) => `https://api.foursquare.com/v2/venues/search?
 	client_id=BP1WT40QN3RRWCSYCXFS3IQHZJT0YCLB43A5XSZ24CDBXKLE&
 	client_secret=R5JUNTFIBPUPXNDYVGMSFCAQ15BS4KD0BEEJKH4ETFZPQ2E1&
@@ -13,6 +17,7 @@ const photoUrl = (id) => `https://api.foursquare.com/v2/venues/${id}/photos?
 	client_secret=R5JUNTFIBPUPXNDYVGMSFCAQ15BS4KD0BEEJKH4ETFZPQ2E1
 	&v=20180323&limit=1`;
 
+/*Hard coded locations*/
 const markers = [{
 			location: "Les Invalides",
 			lat: 48.858410,
@@ -54,12 +59,12 @@ class App extends Component {
 
 	state = {
 		center : {location: "Eiffel Tower", lat: 48.858372, lng: 2.2945},
-		markersShown : markers,
-		allMarkers : markers,
-		errorsHappened : false
+		markersShown : markers, // Markes visible in list and map
+		allMarkers : markers,	// Overall markers
+		errorsHappened : false	// Error happened when loading from api 
 	}
 
-	//Filter locations when button is pressed
+	//Filter locations when filter button is pressed
 	filterLocations = (input) => {
 		if(input !== ''){
 			this.setState((state) => ({
@@ -73,9 +78,14 @@ class App extends Component {
 		}
 	}
 
-	//Show info of marker, helper function to determine if loading api is needed
+	/* Show info of marker also determine if loading api is needed
+	 * When an erros occurs, indicate that to user and dont try
+	 * to load from the api again, unless user reloads page
+	 */
 	loadInfo = (marker,animate) => {
 		const that = this;
+
+		/*Case where there are no images loaded and error has not occured yet*/
 		if(marker.img === undefined && !this.state.errorsHappened){
 			fetch(apiUrl(marker.lat,marker.lng,marker.location))
 			.then(function(response) {
@@ -132,6 +142,7 @@ class App extends Component {
 				})))
 			});
 		}
+		/*Images already loaded, or error occurred with api loading*/
 		else{
 			that.setState((state) => ({
 				markersShown : state.markersShown.map((m) => {

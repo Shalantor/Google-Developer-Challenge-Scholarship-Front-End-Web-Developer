@@ -33,12 +33,14 @@ class ListView extends Component {
 
    return(
     <div>
+
       <div className="nav">
         <button onClick={() => this.toggleList()} 
           className={"nav-button " + (this.state.showList ? '' : 'move-left move-left-small')}>
           <i className="fa fa-bars"></i>
         </button>
       </div>
+
       <div className={"list-view" + (this.state.showList ? '' : 'hidden')}>
         <h1>Locations</h1>
         <div className="filter">
@@ -51,6 +53,7 @@ class ListView extends Component {
           ))}
         </ul>
       </div>
+      
       {this.props.errorsHappened && this.state.showErrorWindow &&
         <div className="error-window">
         <button onClick={() => this.closeErrorWindow()} 

@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
+/*For animation of marker*/
 const google = window.google;
 
+/* This code is placed outside the component code intenionally.
+ * This prevents the map for re rendering when only a marker
+ * needs to be re rendered. This solution was taken from an 
+ * answer of a user at the issue number 220 for the 
+ * react google maps framework, which is at the 
+ * link https://github.com/tomchentw/react-google-maps/issues/220.
+ * This code initializes the map the markers and the info windows*/
 const RenderMap = withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: props.center.lat, lng: props.center.lng } }
