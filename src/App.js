@@ -159,8 +159,11 @@ class App extends Component {
 	render() {
 		return (
 		  <div className="App">
-		    <ListView errorsHappened={this.state.errorsHappened} onChoose={this.loadInfo} markers={this.state.markersShown} onFilter = {this.filterLocations}/>
-		    <Map center={this.state.center} onToggle = {this.loadInfo} markers={this.state.markersShown}/>
+		  	<ListView errorsHappened={this.state.errorsHappened} 
+		    	onChoose={this.loadInfo} markers={this.state.markersShown} 
+		    	onFilter = {this.filterLocations}/>
+		    <Map center={this.state.center} onToggle = {this.loadInfo} 
+		    	markers={this.state.markersShown}/>
 		  </div>
 		);
 		}
