@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { withScriptjs,withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 /*For animation of marker*/
 const google = window.google;
@@ -11,7 +11,7 @@ const google = window.google;
  * react google maps framework, which is at the 
  * link https://github.com/tomchentw/react-google-maps/issues/220.
  * This code initializes the map the markers and the info windows*/
-const RenderMap = withGoogleMap(props => (
+const RenderMap = withScriptjs(withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: props.center.lat, lng: props.center.lng } }
         defaultZoom = { 13 }
@@ -21,13 +21,13 @@ const RenderMap = withGoogleMap(props => (
         <Marker role='button' onClick={() => props.onToggle(marker)} 
         key = {`${marker.lat} ${marker.lng}`}  
         position = {{lat: marker.lat, lng: marker.lng}}
-        animation = {marker.animate ? google.maps.Animation.BOUNCE : null}>
+        animation = {marker.animate ? window.google.maps.Animation.BOUNCE : null}>
         {marker.isVisible && <InfoWindow role='button' onCloseClick={() => props.onToggle(marker,false)}>
           <div><img src={marker.img} alt={marker.location + ' in Paris, France'} /><p>{marker.location}</p></div></InfoWindow>}
         </Marker>
       ))}
       </GoogleMap>
-   ));
+   )));
 
 class Map extends Component {
 
@@ -38,6 +38,8 @@ class Map extends Component {
         <RenderMap
           containerElement={ <div className="map-container"/> }
           mapElement={ <div className="map" /> }
+          loadingElement = { <div className="map" /> }
+          googleMapURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBD6flB_1bjpFaxI4k_xi07fl9GbCosRYU'
           center = {this.props.center}
           markers = {this.props.markers}
           onToggle = {this.props.onToggle}
