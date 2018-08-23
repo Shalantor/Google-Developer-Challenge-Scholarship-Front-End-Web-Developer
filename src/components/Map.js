@@ -28,6 +28,23 @@ const RenderMap = withScriptjs(withGoogleMap(props => (
 
 class Map extends Component {
 
+  state = {
+    showErrorWindow : false
+  }
+
+  componentDidCatch(error,info){
+    this.setState ({
+      showErrorWindow : true
+    });
+  }
+
+  //close the error window
+  closeErrorWindow = () => {
+    this.setState({
+      showErrorWindow : false
+    })
+  }
+
    render() {
 
    return(
@@ -41,6 +58,19 @@ class Map extends Component {
           markers = {this.props.markers}
           onToggle = {this.props.onToggle}
         />
+        {this.state.showErrorWindow &&
+          <div>
+            <div className="map-container"/>
+            <div className="map" />
+            <div className="error-window">
+            <button onClick={() => this.closeErrorWindow()} 
+              className="close-button"><i className="fa fa-times"/></button>
+              <p>Some images or data may have 
+              failed to be downloaded properly.
+              You can try to refresh the page to fix this error.</p>
+            </div>
+          </div>
+        }
       </div>
    );
 
