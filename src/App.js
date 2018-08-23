@@ -57,6 +57,16 @@ const markers = [{
 
 class App extends Component {
 
+	constructor(props){
+		super(props);
+		window.gm_authFailure = () => {
+			console.log('here pilabi');
+			this.setState({
+				errorsHappened : true
+			})
+		}
+	}
+
 	state = {
 		center : {location: "Eiffel Tower", lat: 48.858372, lng: 2.2945},
 		markersShown : markers, // Markes visible in list and map

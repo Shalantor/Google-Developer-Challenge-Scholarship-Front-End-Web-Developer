@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { withScriptjs,withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
-/*For animation of marker*/
-const google = window.google;
-
 /* This code is placed outside the component code intenionally.
  * This prevents the map for re rendering when only a marker
  * needs to be re rendered. This solution was taken from an 
