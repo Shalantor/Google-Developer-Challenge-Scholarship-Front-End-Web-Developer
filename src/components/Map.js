@@ -51,8 +51,8 @@ class Map extends Component {
       <div>
         <RenderMap
           containerElement={ <div className="map-container"/> }
-          mapElement={ <div className="map" /> }
-          loadingElement = { <div className="map" /> }
+          mapElement={ <div role="application" className="map" /> }
+          loadingElement = { <div role="application" className="map" /> }
           googleMapURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBD6flB_1bjpFaxI4k_xi07fl9GbCosRYU'
           center = {this.props.center}
           markers = {this.props.markers}
@@ -61,7 +61,7 @@ class Map extends Component {
         {this.state.showErrorWindow &&
           <div>
             <div className="map-container"/>
-            <div className="map" />
+            <div role="application" className="map" />
             <div className="error-window">
             <button onClick={() => this.closeErrorWindow()} 
               className="close-button"><i className="fa fa-times"/></button>
