@@ -19,7 +19,7 @@ const RenderMap = withScriptjs(withGoogleMap(props => (
         key = {`${marker.lat} ${marker.lng}`}  
         position = {{lat: marker.lat, lng: marker.lng}}
         animation = {marker.animate ? window.google.maps.Animation.BOUNCE : null}>
-        {marker.isVisible && <InfoWindow role='button' onCloseClick={() => props.onToggle(marker,false)}>
+        {marker.isVisible && <InfoWindow tabIndex = '0' role='button' onCloseClick={() => props.onToggle(marker,false)}>
           <div><img src={marker.img} alt={marker.location + ' in Paris, France'} /><p>{marker.location}</p></div></InfoWindow>}
         </Marker>
       ))}

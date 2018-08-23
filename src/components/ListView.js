@@ -34,25 +34,25 @@ class ListView extends Component {
    return(
     <div>
 
-      <div className="nav">
-        <button onClick={() => this.toggleList()} 
+      <header className="nav">
+        <button aria-label="Display List of Locations" onClick={() => this.toggleList()} 
           className={"nav-button " + (this.state.showList ? '' : 'move-left move-left-small')}>
           <i className="fa fa-bars"></i>
         </button>
-      </div>
+      </header>
 
-      <div className={"list-view" + (this.state.showList ? '' : 'hidden')}>
+      <section className={"list-view" + (this.state.showList ? '' : 'hidden')}>
         <h1>Locations</h1>
         <div className="filter">
-          <input type="text" placeholder="Filter locations" onChange={(event) => this.updateInput(event.target.value)}/>
-          <button onClick={() => this.props.onFilter(this.state.input)}><i className="fa fa-filter">Filter</i></button>
+          <input aria-labelledby="filter" type="text" placeholder="Filter locations" onChange={(event) => this.updateInput(event.target.value)}/>
+          <button id="filter" onClick={() => this.props.onFilter(this.state.input)}><i className="fa fa-filter">Filter</i></button>
         </div>
         <ul className="list">
           {this.props.markers.map((marker =>
-            <li role='button' onClick={() => this.props.onChoose(marker,true)} key = {marker.location} >{marker.location}</li>
+            <li tabIndex='0' role='button' onClick={() => this.props.onChoose(marker,true)} key = {marker.location} >{marker.location}</li>
           ))}
         </ul>
-      </div>
+      </section>
       
       {this.props.errorsHappened && this.state.showErrorWindow &&
         <div className="error-window">
@@ -63,9 +63,9 @@ class ListView extends Component {
           You can try to refresh the page to fix this error.</p>
         </div>
       }
-      <div className='data-sources'>
+      <aside className='data-sources'>
         Images provided by <a href='https:\/\/foursquare.com'>foursquare</a> API
-      </div>
+      </aside>
     </div>
    );
 
