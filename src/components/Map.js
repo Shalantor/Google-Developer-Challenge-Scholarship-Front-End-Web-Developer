@@ -33,6 +33,7 @@ class Map extends Component {
   }
 
   componentDidCatch(error,info){
+    console.log(info);
     this.setState ({
       showErrorWindow : true
     });
@@ -49,16 +50,16 @@ class Map extends Component {
 
    return(
       <div>
-        <RenderMap
+        {!this.props.googleError && <RenderMap
           containerElement={ <div className="map-container"/> }
           mapElement={ <div role="application" className="map" /> }
           loadingElement = { <div role="application" className="map" /> }
-          googleMapURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBD6flB_1bjpFaxI4k_xi07fl9GbCosRYU'
+          googleMapURL = 'https://maps.gooapis.com/maps/api/js?key=AIzaSyBD6flB_1bjpFaxI4k_xi07fl9GbCosRYU'
           center = {this.props.center}
           markers = {this.props.markers}
           onToggle = {this.props.onToggle}
-        />
-        {this.state.showErrorWindow &&
+        />}
+        {(this.state.showErrorWindow || this.props.googleError) && 
           <div>
             <div className="map-container"/>
             <div role="application" className="map" />

@@ -71,7 +71,28 @@ class App extends Component {
 		center : {location: "Eiffel Tower", lat: 48.858372, lng: 2.2945},
 		markersShown : markers, // Markes visible in list and map
 		allMarkers : markers,	// Overall markers
-		errorsHappened : false	// Error happened when loading from api 
+		errorsHappened : false,	// Error happened when loading from api 
+		googleLoaded : false,
+		googleError : false
+	}
+
+	componentDidMount() {
+		var that = this;
+		var ref = window.document.getElementsByTagName("link")[0];
+	    var script = window.document.createElement("script");
+	    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBD6flB_1bjpFaxI4k_xi07fl9GbCosRYU`;
+	    script.async = true;
+	    script.onerror = () => {
+	        that.setState({
+	        	googleError : true
+	        });
+	    };
+	    script.onload = () => {
+	    	this.setState({
+				googleLoaded : true
+			})
+	    }
+		ref.parentNode.insertBefore(script, ref);
 	}
 
 	//Filter locations when filter button is pressed
@@ -172,8 +193,8 @@ class App extends Component {
 		  	<ListView errorsHappened={this.state.errorsHappened} 
 		    	onChoose={this.loadInfo} markers={this.state.markersShown} 
 		    	onFilter = {this.filterLocations}/>
-		    <Map center={this.state.center} onToggle = {this.loadInfo} 
-		    	markers={this.state.markersShown}/>
+		    { (this.state.googleLoaded || this.state.googleError) && <Map center={this.state.center} onToggle = {this.loadInfo} 
+		    	googleError = {this.state.googleError} markers={this.state.markersShown}/>}
 		  </div>
 		);
 		}
