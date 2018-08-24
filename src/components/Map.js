@@ -65,9 +65,8 @@ class Map extends Component {
             <div className="error-window">
             <button onClick={() => this.closeErrorWindow()} 
               className="close-button"><i className="fa fa-times"/></button>
-              <p>Some images or data may have 
-              failed to be downloaded properly.
-              You can try to refresh the page to fix this error.</p>
+              <p>Google maps did not load correctly. You can try to refresh
+              the page to fix this error</p>
             </div>
           </div>
         }
