@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withScriptjs,withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 /* This code is placed outside the component code intenionally.
  * This prevents the map for re rendering when only a marker
