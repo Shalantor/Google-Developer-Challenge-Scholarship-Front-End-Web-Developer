@@ -50,13 +50,13 @@ class Map extends Component {
 
    return(
       <div>
-        <RenderMap
+        {window.google && <RenderMap
           containerElement={ <div className="map-container"/> }
           mapElement={ <div role="application" className="map" /> }
           center = {this.props.center}
           markers = {this.props.markers}
           onToggle = {this.props.onToggle}
-        />
+        />}
         {(this.state.showErrorWindow || this.props.googleError) && 
           <div>
             <div className="map-container"/>
