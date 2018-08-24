@@ -60,9 +60,8 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		window.gm_authFailure = () => {
-			console.log('here pilabi');
 			this.setState({
-				errorsHappened : true
+				googleError : true
 			})
 		}
 	}

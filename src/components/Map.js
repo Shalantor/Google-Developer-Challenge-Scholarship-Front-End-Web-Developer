@@ -8,7 +8,7 @@ import { withScriptjs,withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react
  * react google maps framework, which is at the 
  * link https://github.com/tomchentw/react-google-maps/issues/220.
  * This code initializes the map the markers and the info windows*/
-const RenderMap = withScriptjs(withGoogleMap(props => (
+const RenderMap = withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: props.center.lat, lng: props.center.lng } }
         defaultZoom = { 13 }
@@ -24,7 +24,7 @@ const RenderMap = withScriptjs(withGoogleMap(props => (
         </Marker>
       ))}
       </GoogleMap>
-   )));
+   ));
 
 class Map extends Component {
 
@@ -50,15 +50,13 @@ class Map extends Component {
 
    return(
       <div>
-        {!this.props.googleError && <RenderMap
+        <RenderMap
           containerElement={ <div className="map-container"/> }
           mapElement={ <div role="application" className="map" /> }
-          loadingElement = { <div role="application" className="map" /> }
-          googleMapURL = 'https://maps.gooapis.com/maps/api/js?key=AIzaSyBD6flB_1bjpFaxI4k_xi07fl9GbCosRYU'
           center = {this.props.center}
           markers = {this.props.markers}
           onToggle = {this.props.onToggle}
-        />}
+        />
         {(this.state.showErrorWindow || this.props.googleError) && 
           <div>
             <div className="map-container"/>
